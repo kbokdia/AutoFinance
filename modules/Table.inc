@@ -31,15 +31,18 @@ class Table{
 		return $this->getArrayResult($sql);
 	}
 
-	public function getALLValues($constraint,$value){		
-		$operator = $this->operator($value);
-		$sql = "SELECT * FROM ".$this->name." WHERE ".$constraint." ".$operator;
+	public function getALLValues($constraints,$type=null){		
+		$base = "SELECT * FROM ".$this->name;
+		$where = $this->buildConstraintStr($constraints,$type);
+		$sql = $base.$where;
 		return $this->getArrayResult($sql);
 	}
 
-	public function get($identifier,$constraint,$value){
-		$operator = $this->operator($value);
-		$sql = "SELECT ".$identifier." FROM ".$this->name." WHERE ".$constraint." ".$operator." LIMIT 1";
+	public function get($identifier,$constraints,$type=null){
+		$base = "SELECT ".$identifier." FROM ".$this->name;
+		$where = $this->buildConstraintStr($constraints,$type);
+		$end = " LIMIT 1";
+		$sql = $base.$where.$end;
 		return $this->getArrayResult($sql,$identifier);
 	}
 
