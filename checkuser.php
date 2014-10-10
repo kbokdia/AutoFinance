@@ -18,6 +18,7 @@ if(isset($_POST['email']))
 					$found = true;
 					session_regenerate_id();
 					$_SESSION['s_username'] = $username;
+					setcookie("user",$username);
 					$names = new Table("names");
 					$constraints = array('id' => $value['name_id'] );
 					$first_name = $names->get("first_name",$constraints);
@@ -31,9 +32,9 @@ if(isset($_POST['email']))
 		}
 		$members->close();
 		if($found)
-			echo 1;
+			header("Location:index.php");
 		else
-			echo 0;
+			echo "Wrong user name password";
 	}
 }
 ?>

@@ -1,0 +1,38 @@
+<h3>Login</h3>
+        <form role='form' id='login_form'>
+          <div class='form-group'>
+            <label for='email'>Email address</label>
+            <input type='email' class='form-control' id='email' name='email' placeholder='Enter email'>
+          </div>
+          <div class='form-group'>
+            <label for='password'>Password</label>
+            <input type='password' class='form-control' id='password' name='password' placeholder='Password'>
+          </div>
+          <button type='submit' id='login_btn' class='btn btn-default'>Login</button>
+        </form>
+		
+		var status;
+
+    $("#login_form").submit(function(event) {
+      /* Act on the event */
+      event.preventDefault();
+      var $form = $(this),
+        email = $form.find("input[name='email']").val(),
+        password = $form.find("input[name='password']").val();
+
+      var posting = $.post("checkuser.php",{email:email,password:password});
+      posting.done(function(data){
+        status = data;
+        if(data == 1){
+          loadUserPage();
+        }
+        else{
+          alert("Wrong user name or password!!!");
+        }
+      })
+    });
+
+    function loadUserPage(){
+      $
+
+    }
