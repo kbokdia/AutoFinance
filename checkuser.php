@@ -34,7 +34,7 @@ if(isset($_POST['email']))
 		if($found)
 			header("Location:index.php");
 		else
-			echo "Wrong user name password";
+			header("Location:index.php?error=Incorrect Username or Password");
 	}
 }
 ?>
