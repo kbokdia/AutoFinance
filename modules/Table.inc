@@ -126,6 +126,7 @@ class Table{
 
 		foreach ($arr_values as $value)
 		{
+			$value = $this->mysqli->real_escape_string($value);
 			if (strcasecmp(gettype($value), "string") == 0)
 			{
 				$insert_value_str .= "'".$value."', ";
@@ -154,6 +155,7 @@ class Table{
 		$update_field_str = "";
 		if(is_array($arr_values)){
 			foreach ($arr_values as $key => $value) {
+				$value = $this->mysqli->real_escape_string($value);
 				$value = $this->getStringByType($value);
 				$update_field_str .= $key."=".$value.",";
 			}

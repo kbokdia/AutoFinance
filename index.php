@@ -14,6 +14,9 @@ if(authenticate()){
           </div>
           <br />
           <p>
+            <a href='add-namelist-form.php'>Add new defaultor</a>
+          </p>
+          <p>
             <h3 class='h3'>Namelist</h3>
             <table class='table'>
               <th>Name</th>
@@ -42,24 +45,15 @@ else{
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AutoFinance</title>
+    <?php include("add-bootstrap.php"); ?>
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-    <div id="wrapper">
+    <div id="wrapper" class="container">
         <?php echo $str;?>
     </div>
     
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
     
     </script>
