@@ -26,8 +26,14 @@ class Table{
 		$this->executeQuery($sql);
 	}
 
-	public function getALL(){
-		$sql = "SELECT * FROM ".$this->name;
+	public function getALL($order=null,$order_type=null){
+		$sql;
+		if(is_null($order)){
+			$sql = "SELECT * FROM ".$this->name;
+		}
+		else{
+			$sql = "SELECT * FROM ".$this->name." ORDER BY ".$order." ".$order_type;
+		}
 		return $this->getArrayResult($sql);
 	}
 
@@ -44,6 +50,17 @@ class Table{
 		$end = " LIMIT 1";
 		$sql = $base.$where.$end;
 		return $this->getArrayResult($sql,$identifier);
+	}
+
+	public function getLastid(){
+		$sql = "SELECT MAX(id) as id FROM ".$this->name;
+		return $this->getArrayResult($sql,"id");
+	}
+
+	public function getTableFields()
+	{
+		$sql = "SHOW COLUMNS FROM ".$this->name;
+		return $this->getArrayResult($sql);
 	}
 
 	private function operator($value){
@@ -85,12 +102,6 @@ class Table{
 		else
 			return $temp_arr[0][$identifier];
 	
-	}
-
-	public function getTableFields()
-	{
-		$sql = "SHOW COLUMNS FROM ".$this->name;
-		return getArrayResult($sql);
 	}
 
 	public function close(){

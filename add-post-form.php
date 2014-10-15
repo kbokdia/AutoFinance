@@ -33,6 +33,14 @@ if(!authenticate()){
 			<div class='row'>
 				<div class='col-md-3'>
 					<div class='form-group'>
+						<label for='post'>Post</label>
+						<input type='text' id='post' name='post' class='form-control' required='required'/>
+					</div>
+				</div><!--Close Col-->
+			</div><!--Close Row-->
+			<div class='row'>
+				<div class='col-md-3'>
+					<div class='form-group'>
 						<label for='district'>District</label>
 						<select name='district' id='district' class='form-control'>
 						</select>
@@ -51,7 +59,7 @@ if(!authenticate()){
 				<div class='col-md-3'>
 					<div class='form-group'>
 						<label for='state'>State</label>
-						<input type='text' id='state' name='state' class='form-control' value='Kerela' readonly='readonly' />
+						<input type='text' id='state' name='state' class='form-control' value='Kerala' readonly='readonly' />
 					</div>
 				</div><!--Close Col-->
 			</div><!--Close Row-->
@@ -61,6 +69,7 @@ if(!authenticate()){
 	<script type="text/javascript">
 		$('#post_form').submit(function(event){
 			event.preventDefault();
+			var post = $('#post').val();
 			var	dist = $('#district').val();
 			var	pin = $('#pincode').val();
 			var	state = $('#state').val();
@@ -68,6 +77,7 @@ if(!authenticate()){
 			console.log(dist+pin+state);
 
 			var posting = $.post("add-post.php", {
+				post: post,
 				district: dist,
 				pincode: pin,
 				state: state,

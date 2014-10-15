@@ -10,7 +10,7 @@ if(!authenticate()){
 
 if(isset($_POST)){
 	$post = new Table('posts');
-	$data = array("district"=>$_POST['district'],"pincode"=>$_POST['pincode'],"state"=>$_POST['state']);
+	$data = array("post"=>$_POST['post'],"district"=>$_POST['district'],"pincode"=>$_POST['pincode'],"state"=>$_POST['state']);
 	$post->save($data);
 	echo "1";
 }

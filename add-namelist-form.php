@@ -16,13 +16,30 @@ $last_name = $name->get('last_name',$constraint);
 <head>
 	<title>AutoFinance :: Add new defaultor</title>
 	<?php include("add-bootstrap.php");?>
+	<script type="text/javascript">
+		
+		function getPostData(){
+			$.post("get-post.php",function(data){
+				setPostData(data);
+			});
+		}
+
+		function setPostData(data){
+			$('#post').append(data);
+			//console.log(data);
+		}
+
+		$(document).ready(function(event){
+			getPostData();
+		});
+	</script>
 </head>
 <body>
 	<div id="wrapper" class="container">
 		<p>
 			<h3 class='h3'>New Defaultor</h3>
 		</p>
-		<form role='form'>
+		<form role='form' id='namelist_form'>
 			<div class='row'>
 				<div class='panel panel-default'>
 					<div class='panel-heading'>
@@ -32,7 +49,7 @@ $last_name = $name->get('last_name',$constraint);
 						<div class='col-md-3'>
 							<div class='form-group'>
 								<label for='first_name'>First Name</label>
-								<input id='first_name' name='first_name' class='form-control' required='required'/>
+								<input id='first_name' name='first_name' class='form-control upper-case' required='required'/>
 							</div>
 						</div><!--Close col-->
 						<div class='col-md-3'>
@@ -44,7 +61,7 @@ $last_name = $name->get('last_name',$constraint);
 						<div class='col-md-3'>
 							<div class='form-group'>
 								<label for='last_name'>Last Name</label>
-								<input id='last_name' name='last_name' class='form-control' required='required'/>
+								<input id='last_name' name='last_name' class='form-control upper-case' required='required'/>
 							</div>
 						</div><!--Close col-->
 					</div><!--Close panel body-->
@@ -59,7 +76,7 @@ $last_name = $name->get('last_name',$constraint);
 						<div class='col-md-3'>
 							<div class='form-group'>
 								<label for='father_first_name'>First Name</label>
-								<input id='father_first_name' name='father_first_name' class='form-control' required='required' />
+								<input id='father_first_name' name='father_first_name' class='form-control upper-case' required='required' />
 							</div>
 						</div><!--Close col-->
 						<div class='col-md-3'>
@@ -71,7 +88,7 @@ $last_name = $name->get('last_name',$constraint);
 						<div class='col-md-3'>
 							<div class='form-group'>
 								<label for='father_last_name'>Last Name</label>
-								<input id='father_last_name' name='father_last_name' class='form-control' required='required' />
+								<input id='father_last_name' name='father_last_name' class='form-control upper-case' required='required' />
 							</div>
 						</div><!--Close col-->
 					</div><!--Close panel body-->
@@ -87,41 +104,45 @@ $last_name = $name->get('last_name',$constraint);
 						<div class='col-md-3'>
 							<div class='form-group'>
 								<label for='house'>House Name</label>
-								<input id='house' name='house' class='form-control' required='required' />
+								<input id='house' name='house' class='form-control upper-case' required='required' />
 							</div>
 						</div>
-						<div class='col-md-3 hidden-sm'>
+						
+					</div><!--Close row-->
+					<div class='row'>
+						<div class='col-md-4'>
+							<div class='form-group'>
+								<label for='address1'>Address Line 1</label>
+								<input id='address1' name='address1' class='form-control'/>
+							</div>
+						</div>
+						<div class='col-md-2 hidden-sm'>
 							
 						</div>
+						<div class='col-md-4'>
+							<div class='form-group'>
+								<label for='address2'>Address Line 2</label>
+								<input id='address2' name='address2' class='form-control'/>
+							</div>
+						</div>
+						
+					</div><!--Close row-->
+					<div class='row'>
 						<div class='col-md-3'>
 							<div class='form-group'>
 								<label for='mobile'>Mobile</label>
 								<input id='mobile' name='mobile' class='form-control' required='required' />
 							</div>
 						</div>
-					</div><!--Close row-->
-					<div class='row'>
-						<div class='col-md-3'>
-							<div class='form-group'>
-								<label for='address1'>Address Line 1</label>
-								<input id='address1' name='address1' class='form-control'/>
-							</div>
-						</div>
+
 						<div class='col-md-3 hidden-sm'>
 							
 						</div>
+						
 						<div class='col-md-3'>
 							<div class='form-group'>
 								<label for='phone'>Landline</label>
 								<input id='phone' name='phone' class='form-control' />
-							</div>
-						</div>
-					</div><!--Close row-->
-					<div class='row'>
-						<div class='col-md-3'>
-							<div class='form-group'>
-								<label for='address2'>Address Line 2</label>
-								<input id='address2' name='address2' class='form-control'/>
 							</div>
 						</div>
 					</div><!--Close row-->
@@ -150,6 +171,19 @@ $last_name = $name->get('last_name',$constraint);
 		</form>
 	</div>
 	<script type="text/javascript">
+		$(".upper-case").focusout(function(event){
+			var str = $(this).val()
+			$(this).val(str.charAt(0).toUpperCase() + str.slice(1));
+		})
+
+		$("#namelist_form").submit(function(event){
+			event.preventDefault();
+			var posting = $.post("add-namelist.php", $("#namelist_form").serialize());
+
+			posting.done(function(data){
+				console.log(data);
+			});
+		});
 		
 	</script>
 </body>
