@@ -22,7 +22,12 @@ if(isset($_POST)){
 	$name->close();
 	
 	$name_list = new Table('namelist');
-	$name_list->save($name_list_data); 
+	if ($_POST['id'] == 0) {
+		$name_list->save($name_list_data); 
+	}else{
+		$name_list->save($name_list_data,array('id'=>$_POST['id'])); 
+	}
+	
 	$name_list->close();
 }
 else

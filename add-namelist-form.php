@@ -11,6 +11,32 @@ $name = new Table('names');
 $constraint = array('id'=>$_SESSION['s_name_id']);
 $first_name = $_SESSION['s_name'];
 $last_name = $name->get('last_name',$constraint);
+
+$nameListRowData;
+if(isset($_GET['id'])){
+	include('get-namelist-array.php');
+	$nameListTable = new Table('namelist');
+	$nameList_arr = $nameListTable->getALLValues(array('id'=>$_GET['id']));
+	$nameListRowData = getRowValues($nameList_arr[0]);
+}else{
+	$nameListRowData = array(
+			'id'=>0,
+			'first_name'=>null,
+			'last_name'=>null,
+			'middle_name'=>null,
+			'f_first_name'=>null,
+			'f_last_name'=>null,
+			'f_middle_name'=>null,
+			'house'=>null,
+			'address1'=>null,
+			'address2'=>null,
+			'phone'=>null,
+			'mobile'=>null,
+			'post_id'=>0,
+			'photo'=>null,
+			'vehicle_id'=>null
+			);
+}
 ?>
 <html lang="en">
 <head>
@@ -19,7 +45,7 @@ $last_name = $name->get('last_name',$constraint);
 	<script type="text/javascript">
 		
 		function getPostData(){
-			$.post("get-post.php",function(data){
+			$.post("get-post.php",{post: <?php echo $nameListRowData['post_id'] ;?>},function(data){
 				setPostData(data);
 			});
 		}
@@ -49,19 +75,19 @@ $last_name = $name->get('last_name',$constraint);
 						<div class='col-md-3'>
 							<div class='form-group'>
 								<label for='first_name'>First Name</label>
-								<input id='first_name' name='first_name' class='form-control upper-case' required='required'/>
+								<input id='first_name' name='first_name' class='form-control upper-case' value='<?php echo $nameListRowData['first_name']; ?>' required='required'/>
 							</div>
 						</div><!--Close col-->
 						<div class='col-md-3'>
 							<div class='form-group'>
 								<label for='middle_name'>Middle Name</label>
-								<input id='middle_name' name='middle_name' class='form-control' />
+								<input id='middle_name' name='middle_name' class='form-control upper-case' value='<?php echo $nameListRowData['middle_name']; ?>' />
 							</div>
 						</div><!--Close col-->
 						<div class='col-md-3'>
 							<div class='form-group'>
 								<label for='last_name'>Last Name</label>
-								<input id='last_name' name='last_name' class='form-control upper-case' required='required'/>
+								<input id='last_name' name='last_name' class='form-control upper-case' value='<?php echo $nameListRowData['last_name']; ?>' required='required'/>
 							</div>
 						</div><!--Close col-->
 					</div><!--Close panel body-->
@@ -76,19 +102,19 @@ $last_name = $name->get('last_name',$constraint);
 						<div class='col-md-3'>
 							<div class='form-group'>
 								<label for='father_first_name'>First Name</label>
-								<input id='father_first_name' name='father_first_name' class='form-control upper-case' required='required' />
+								<input id='father_first_name' name='father_first_name' class='form-control upper-case' value='<?php echo $nameListRowData['f_first_name']; ?>' required='required' />
 							</div>
 						</div><!--Close col-->
 						<div class='col-md-3'>
 							<div class='form-group'>
 								<label for='father_middle_name'>Middle Name</label>
-								<input id='father_middle_name' name='father_middle_name' class='form-control'/>
+								<input id='father_middle_name' name='father_middle_name' value='<?php echo $nameListRowData['f_middle_name']; ?>' class='form-control upper-case'/>
 							</div>
 						</div><!--Close col-->
 						<div class='col-md-3'>
 							<div class='form-group'>
 								<label for='father_last_name'>Last Name</label>
-								<input id='father_last_name' name='father_last_name' class='form-control upper-case' required='required' />
+								<input id='father_last_name' name='father_last_name' class='form-control upper-case' value='<?php echo $nameListRowData['f_last_name']; ?>' required='required' />
 							</div>
 						</div><!--Close col-->
 					</div><!--Close panel body-->
@@ -104,7 +130,7 @@ $last_name = $name->get('last_name',$constraint);
 						<div class='col-md-3'>
 							<div class='form-group'>
 								<label for='house'>House Name</label>
-								<input id='house' name='house' class='form-control upper-case' required='required' />
+								<input id='house' name='house' class='form-control upper-case' value='<?php echo $nameListRowData['house']; ?>' required='required' />
 							</div>
 						</div>
 						
@@ -113,7 +139,7 @@ $last_name = $name->get('last_name',$constraint);
 						<div class='col-md-4'>
 							<div class='form-group'>
 								<label for='address1'>Address Line 1</label>
-								<input id='address1' name='address1' class='form-control'/>
+								<input id='address1' name='address1'value='<?php echo $nameListRowData['address1']; ?>' class='form-control'/>
 							</div>
 						</div>
 						<div class='col-md-2 hidden-sm'>
@@ -122,7 +148,7 @@ $last_name = $name->get('last_name',$constraint);
 						<div class='col-md-4'>
 							<div class='form-group'>
 								<label for='address2'>Address Line 2</label>
-								<input id='address2' name='address2' class='form-control'/>
+								<input id='address2' name='address2' value='<?php echo $nameListRowData['address2']; ?>' class='form-control'/>
 							</div>
 						</div>
 						
@@ -131,7 +157,7 @@ $last_name = $name->get('last_name',$constraint);
 						<div class='col-md-3'>
 							<div class='form-group'>
 								<label for='mobile'>Mobile</label>
-								<input id='mobile' name='mobile' class='form-control' required='required' />
+								<input id='mobile' name='mobile' class='form-control' value='<?php echo $nameListRowData['mobile']; ?>' required='required' />
 							</div>
 						</div>
 
@@ -142,7 +168,7 @@ $last_name = $name->get('last_name',$constraint);
 						<div class='col-md-3'>
 							<div class='form-group'>
 								<label for='phone'>Landline</label>
-								<input id='phone' name='phone' class='form-control' />
+								<input id='phone' name='phone' value='<?php echo $nameListRowData['phone']; ?>' class='form-control' />
 							</div>
 						</div>
 					</div><!--Close row-->
@@ -162,6 +188,7 @@ $last_name = $name->get('last_name',$constraint);
 			<div class='row'>
 				<div class='col-md-3'>
 					<input type='hidden' name='member_id' value='<?php echo $_SESSION['s_id']; ?>' />
+					<input type='hidden' name='id' value='<?php echo $nameListRowData['id']; ?>'>
 					<p>
 						<h5 class='h5'>Added By</h5><?php echo $first_name." ".$last_name; ?>
 					</p>
