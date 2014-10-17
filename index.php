@@ -6,29 +6,6 @@ require_once("modules/Table.inc");
 $str;
 
 if(authenticate()){
-  include("get-namelist-array.php");
-
-  $nameListTable = new Table('namelist');
-  $nameListDataTable = array();
-  $nameList = $nameListTable->getAll();
-
-  foreach ($nameList as $key => $value) {
-    array_push($nameListDataTable, getRowValues($value));    
-  }
-
-
-  $nameListTable->close();
-
-  $table_str = "";
-
-  foreach ($nameListDataTable as $key => $row) {
-    $table_str .= "<tr>";
-    $table_str .= "<td>".$row['name']."</td>";
-    $table_str .= "<td>".$row['house']."</td>";
-    $table_str .= "<td class='hidden-sm hidden-xs'>".$row['added']."</td>";
-    $table_str .= "<td><a href='add-namelist-form.php?id=".$row['id']."'>Edit</a>&nbsp&nbsp<a href='#'>Delete</a></td>";
-    $table_str .= "</tr>";
-  }
 
   $str = "<div id='header'>
             <p>
@@ -44,13 +21,23 @@ if(authenticate()){
           </p>
           <p>
             <h3 class='h3'>Namelist</h3>
-            <table class='table'>
-              <th>Name</th>
-              <th>House</th>
-              <th class='hidden-sm hidden-xs'>Added By</th>
-              <th>Actions</th>".$table_str."
-            </table>
+            <div id='namelist_table'></div>
           </p>
+          <script type='text/javascript'>
+            $(document).ready(function(event){
+              getPostTableData();
+            });
+
+            function getPostTableData(){
+              $.post('get-namelist-table.php',{require:'all'},function(data){
+                  setPostTableData(data);
+              });
+            }
+
+            function setPostTableData(data){
+              $('#namelist_table').append(data);
+            }
+          </script>
           ";
 }
 else{
