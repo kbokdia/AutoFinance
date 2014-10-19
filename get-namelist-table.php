@@ -10,44 +10,73 @@ if(!authenticate()){
 
 if(isset($_POST)){
 	$table_str = "";
-           
+	$is_data = true;
+	$nameListDataTable = array();
+	include("get-namelist-array.php");
 
 	if(isset($_POST['require'])){
 		if($_POST['require'] == 'all'){
-			include("get-namelist-array.php");
 
 			$nameListTable = new Table('namelist');
-			$nameListDataTable = array();
 			$nameList = $nameListTable->getAll();
 
-			foreach ($nameList as $key => $value) {
-				array_push($nameListDataTable, getRowValues($value));    
+			if(is_null($nameList)){
+				$is_data = false;
 			}
-
-			$nameListTable->close();
-
-			$names = array();
-
-			for ($i=0; $i < count($nameListDataTable); $i++) { 
-				for ($j=$i; $j < count($nameListDataTable); $j++) { 
-					if($nameListDataTable[$i]['name'] > $nameListDataTable[$j]['name']){
-						$temp = $nameListDataTable[$i];
-						$nameListDataTable[$i] = $nameListDataTable[$j];
-						$nameListDataTable[$j] = $temp;
-					}
+			else
+			{
+				foreach ($nameList as $key => $value) {
+					array_push($nameListDataTable, getRowValues($value));    
 				}
 			}
-
-			foreach ($nameListDataTable as $key => $row) {
-				$table_str .= "<tr>";
-				$table_str .= "<td>".$row['name']."</td>";
-				$table_str .= "<td>".$row['house']."</td>";
-				$table_str .= "<td class='hidden-sm hidden-xs'>".$row['added']."</td>";
-				$table_str .= "<td><a href='add-namelist-form.php?id=".$row['id']."'>Edit</a>&nbsp&nbsp<a href='".$row['id']."' class='delete_btn' onclick='deleteName(event)'>Delete</a></td>";
-				$table_str .= "</tr>";
-			}
+			$nameListTable->close();
 		}
 	}
+
+	if(isset($_POST['name'])){
+		$nameListTable = new Table('namelist');
+		$sql = "SELECT * FROM namelist WHERE name_id IN (SELECT id FROM names WHERE first_name LIKE '%".$_POST['name']."%')";
+		$nameList = $nameListTable->getArrayResult($sql);
+
+		if(is_null($nameList)){
+			$is_data = false;
+		}
+		else
+		{
+			foreach ($nameList as $key => $value) {
+				array_push($nameListDataTable, getRowValues($value));
+			}
+		}
+
+		$nameListTable->close();
+	}
+
+	if (!$is_data) {
+		$table_str .= "<tr><td>Currently there are no records</td><td></td><td class='hidden-sm hidden-xs'></td><td></td></tr>";
+	}
+	else
+	{
+		for ($i=0; $i < count($nameListDataTable); $i++) { 
+			for ($j=$i; $j < count($nameListDataTable); $j++) { 
+				if($nameListDataTable[$i]['name'] > $nameListDataTable[$j]['name']){
+					$temp = $nameListDataTable[$i];
+					$nameListDataTable[$i] = $nameListDataTable[$j];
+					$nameListDataTable[$j] = $temp;
+				}
+			}
+		}
+
+		foreach ($nameListDataTable as $key => $row) {
+			$table_str .= "<tr>";
+			$table_str .= "<td>".$row['name']."</td>";
+			$table_str .= "<td>".$row['house']."</td>";
+			$table_str .= "<td class='hidden-sm hidden-xs'>".$row['added']."</td>";
+			$table_str .= "<td><a href='add-namelist-form.php?id=".$row['id']."'>Edit</a>&nbsp&nbsp<a href='".$row['id']."' class='delete_btn' onclick='deleteName(event)'>Delete</a></td>";
+			$table_str .= "</tr>";
+		}
+	}
+
+		
 
 	$table_str .= "</table>";
 	echo $table_str;	

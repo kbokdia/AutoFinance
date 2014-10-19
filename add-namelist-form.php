@@ -125,8 +125,8 @@ if(isset($_GET['id'])){
 						<div class='row'>
 							<div class='col-md-5'>
 								<div class='form-group'>
-									<label for='first_name'>Name</label>
-									<input id='first_name' name='first_name' class='form-control upper-case' value='<?php echo $nameListRowData['first_name']; ?>' required='required' placeholder='Joseph' />
+									<label for='first_name'>Full Name</label>
+									<input id='first_name' name='first_name' class='form-control upper-case' value='<?php echo $nameListRowData['first_name']; ?>' required='required' placeholder='Joseph Sunny' />
 								</div>
 							</div>
 							
@@ -137,7 +137,7 @@ if(isset($_GET['id'])){
 							<div class='col-md-5'>
 								<div class='form-group'>
 									<label for='last_name'>Initials</label>
-									<input id='last_name' name='last_name' class='form-control upper-case' value='<?php echo $nameListRowData['last_name']; ?>' required='required' placeholder='S.V'/>
+									<input id='last_name' name='last_name' class='form-control upper-case' value='<?php echo $nameListRowData['last_name']; ?>' placeholder='S.V'/>
 								</div>
 							</div>
 						</div><!-- Close inner Row -->
@@ -153,8 +153,8 @@ if(isset($_GET['id'])){
 						<div class='row'>
 							<div class='col-md-5'>
 								<div class='form-group'>
-									<label for='father_first_name'>Name</label>
-									<input id='father_first_name' name='father_first_name' class='form-control upper-case' value='<?php echo $nameListRowData['f_first_name']; ?>' required='required' placeholder='Sunny'/>
+									<label for='father_first_name'>Full Name</label>
+									<input id='father_first_name' name='father_first_name' class='form-control upper-case' value='<?php echo $nameListRowData['f_first_name']; ?>' required='required' placeholder='Sunny Johnson'/>
 								</div>
 							</div>
 		
@@ -165,7 +165,7 @@ if(isset($_GET['id'])){
 							<div class='col-md-5'>
 								<div class='form-group'>
 									<label for='father_last_name'>Initials</label>
-									<input id='father_last_name' name='father_last_name' class='form-control upper-case' value='<?php echo $nameListRowData['f_last_name']; ?>' required='required' placeholder='V'/>
+									<input id='father_last_name' name='father_last_name' class='form-control upper-case' value='<?php echo $nameListRowData['f_last_name']; ?>' placeholder='V'/>
 								</div>
 							</div>
 						</div><!-- Close inner Row -->

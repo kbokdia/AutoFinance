@@ -136,7 +136,13 @@ else{
     
 
     <script type="text/javascript">
-    
+      $("#search_name").keyup(function(event){
+          var name = $("#search_name").val();
+          $('#namelist_rows').empty();
+          $.post('get-namelist-table.php',{name: name},function(data){
+              setPostTableData(data);
+          });
+      });
     </script>
   </body>
 </html>

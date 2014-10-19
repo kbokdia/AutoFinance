@@ -83,7 +83,7 @@ class Table{
 		$this->mysqli->multi_query($sql);
 	}
 
-	private function getArrayResult($sql,$identifier=null){
+	public function getArrayResult($sql,$identifier=null){
 		$temp_arr = array();
 		$res = $this->mysqli->query($sql);
 
