@@ -42,8 +42,14 @@ if(isset($_GET['id'])){
 <head>
 	<title>AutoFinance :: Add new defaultor</title>
 	<?php include("add-bootstrap.php");?>
+
+	<link href="style.css" rel="stylesheet" type="text/css">
+	
+
 	<script type="text/javascript">
-		
+		var districts = ["Kozhikode","Kasaragod","Idukki","Ernakulam","Cannanore","Mallapuram","Palghat","Pathanamthitta","Quilon","Trichur","Wayanad","Trivandrum","Kottayam","Alapuzzha"
+];
+
 		function getPostData(){
 			$.post("get-post.php",{post: <?php echo $nameListRowData['post_id'] ;?>},function(data){
 				setPostData(data);
@@ -55,130 +61,176 @@ if(isset($_GET['id'])){
 			//console.log(data);
 		}
 
+		
+		function createPost(){
+			//event.preventDefault();
+			
+		}
+
 		$(document).ready(function(event){
 			getPostData();
+
+			var str = "";
+			districts.sort();
+			for(i=0; i<districts.length;i++){
+				str += "<option>"+districts[i]+"</option>";
+			}
+			$("#district").append(str);
 		});
 	</script>
+
 </head>
 <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.php">Auto Finance</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">New Defaulter</a></li>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="nav-right"><a href="logout.php">Logout</a>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
 	<div id="wrapper" class="container">
+		<div class='well well-lg'>
 		<p>
-			<h3 class='h3'>New Defaultor</h3>
+			<center><h1 class='page-header title'>New Defaulter</h1></center>
 		</p>
-		<form role='form' id='namelist_form'>
+		<form role='form' action='add-namelist.php' method='post' id='namelist_form'>
 			<div class='row'>
-				<div class='panel panel-default'>
+				<div class='panel panel-success'>
 					<div class='panel-heading'>
 						<h4 class='panel-title'>Name</h4>
 					</div>
 					<div class='panel-body'>
-						<div class='col-md-3'>
-							<div class='form-group'>
-								<label for='first_name'>First Name</label>
-								<input id='first_name' name='first_name' class='form-control upper-case' value='<?php echo $nameListRowData['first_name']; ?>' required='required'/>
+						<div class='row'>
+							<div class='col-md-5'>
+								<div class='form-group'>
+									<label for='first_name'>Name</label>
+									<input id='first_name' name='first_name' class='form-control upper-case' value='<?php echo $nameListRowData['first_name']; ?>' required='required' placeholder='Joseph' />
+								</div>
 							</div>
-						</div><!--Close col-->
-						<div class='col-md-3'>
-							<div class='form-group'>
-								<label for='middle_name'>Middle Name</label>
-								<input id='middle_name' name='middle_name' class='form-control upper-case' value='<?php echo $nameListRowData['middle_name']; ?>' />
+							
+							<div class='col-md-1 hidden-sm'>
+							
 							</div>
-						</div><!--Close col-->
-						<div class='col-md-3'>
-							<div class='form-group'>
-								<label for='last_name'>Last Name</label>
-								<input id='last_name' name='last_name' class='form-control upper-case' value='<?php echo $nameListRowData['last_name']; ?>' required='required'/>
+							
+							<div class='col-md-5'>
+								<div class='form-group'>
+									<label for='last_name'>Initials</label>
+									<input id='last_name' name='last_name' class='form-control upper-case' value='<?php echo $nameListRowData['last_name']; ?>' required='required' placeholder='S.V'/>
+								</div>
 							</div>
-						</div><!--Close col-->
-					</div><!--Close panel body-->
+						</div><!-- Close inner Row -->
+					</div><!--Close Panel Body-->
 				</div><!--Close panel-->
 			</div><!--Close row-->
 			<div class='row'>
-				<div class='panel panel-default'>
+				<div class='panel panel-success'>
 					<div class='panel-heading'>
 						<h4 class='panel-title'>Father's Name</h4>
 					</div>
 					<div class='panel-body'>
-						<div class='col-md-3'>
-							<div class='form-group'>
-								<label for='father_first_name'>First Name</label>
-								<input id='father_first_name' name='father_first_name' class='form-control upper-case' value='<?php echo $nameListRowData['f_first_name']; ?>' required='required' />
+						<div class='row'>
+							<div class='col-md-5'>
+								<div class='form-group'>
+									<label for='father_first_name'>Name</label>
+									<input id='father_first_name' name='father_first_name' class='form-control upper-case' value='<?php echo $nameListRowData['f_first_name']; ?>' required='required' placeholder='Sunny'/>
+								</div>
 							</div>
-						</div><!--Close col-->
-						<div class='col-md-3'>
-							<div class='form-group'>
-								<label for='father_middle_name'>Middle Name</label>
-								<input id='father_middle_name' name='father_middle_name' value='<?php echo $nameListRowData['f_middle_name']; ?>' class='form-control upper-case'/>
+		
+							<div class='col-md-1 hidden-sm'>
+	
 							</div>
-						</div><!--Close col-->
-						<div class='col-md-3'>
-							<div class='form-group'>
-								<label for='father_last_name'>Last Name</label>
-								<input id='father_last_name' name='father_last_name' class='form-control upper-case' value='<?php echo $nameListRowData['f_last_name']; ?>' required='required' />
+		
+							<div class='col-md-5'>
+								<div class='form-group'>
+									<label for='father_last_name'>Initials</label>
+									<input id='father_last_name' name='father_last_name' class='form-control upper-case' value='<?php echo $nameListRowData['f_last_name']; ?>' required='required' placeholder='V'/>
+								</div>
 							</div>
-						</div><!--Close col-->
-					</div><!--Close panel body-->
+						</div><!-- Close inner Row -->
+					</div><!--Close Panel Body-->
 				</div><!--Close panel-->
 			</div><!--Close row-->
 			<div class='row'>
-				<div class="panel panel-default">
-				  <div class="panel-heading">
-				    <h4 class="panel-title">Contact Details</h4>
-				  </div>
-				  <div class="panel-body">
-				   	<div class='row'>
-						<div class='col-md-3'>
-							<div class='form-group'>
+				<div class="panel panel-success">
+					<div class="panel-heading">
+					<h4 class="panel-title">Contact Details</h4>
+					</div>
+					<div class="panel-body">
+						<div class='row'>
+							<div class='col-md-5'>
+								<div class='form-group'>
 								<label for='house'>House Name</label>
-								<input id='house' name='house' class='form-control upper-case' value='<?php echo $nameListRowData['house']; ?>' required='required' />
+								<input id='house' name='house' class='form-control upper-case' value='<?php echo $nameListRowData['house']; ?>' required='required' placeholder='Enter House Name'/>
 							</div>
 						</div>
 						
 					</div><!--Close row-->
 					<div class='row'>
-						<div class='col-md-4'>
+						<div class='col-md-5'>
 							<div class='form-group'>
 								<label for='address1'>Address Line 1</label>
-								<input id='address1' name='address1'value='<?php echo $nameListRowData['address1']; ?>' class='form-control'/>
+								<input id='address1' name='address1'value='<?php echo $nameListRowData['address1']; ?>' class='form-control' placeholder='Enter Address'/>
 							</div>
 						</div>
-						<div class='col-md-2 hidden-sm'>
+						<div class='col-md-1 hidden-sm'>
 							
 						</div>
-						<div class='col-md-4'>
+						<div class='col-md-5'>
 							<div class='form-group'>
 								<label for='address2'>Address Line 2</label>
-								<input id='address2' name='address2' value='<?php echo $nameListRowData['address2']; ?>' class='form-control'/>
-							</div>
-						</div>
-						
-					</div><!--Close row-->
-					<div class='row'>
-						<div class='col-md-3'>
-							<div class='form-group'>
-								<label for='mobile'>Mobile</label>
-								<input id='mobile' name='mobile' class='form-control' value='<?php echo $nameListRowData['mobile']; ?>' required='required' />
+								<input id='address2' name='address2' value='<?php echo $nameListRowData['address2']; ?>' class='form-control' placeholder='Enter Address'/>
 							</div>
 						</div>
 
-						<div class='col-md-3 hidden-sm'>
+					</div><!--Close row-->
+					<div class='row'>
+						<div class='col-md-5'>
+							<div class='form-group'>
+								<label for='mobile'>Mobile</label>
+								<input id='mobile' name='mobile' class='form-control' value='<?php echo $nameListRowData['mobile']; ?>' required='required' placeholder='Enter Mobile Number'/>
+							</div>
+						</div>
+
+						<div class='col-md-1 hidden-sm'>
 							
 						</div>
 						
-						<div class='col-md-3'>
+						<div class='col-md-5'>
 							<div class='form-group'>
 								<label for='phone'>Landline</label>
-								<input id='phone' name='phone' value='<?php echo $nameListRowData['phone']; ?>' class='form-control' />
+								<input id='phone' name='phone' value='<?php echo $nameListRowData['phone']; ?>' class='form-control' placeholder='Enter Landline Number'/>
 							</div>
 						</div>
 					</div><!--Close row-->
 					<div class='row'>
-						<div class='col-md-3'>
+						<div class='col-md-5'>
 							<div class='form-group'>
 								<label for='post'>Post</label>
 								<select id='post' name='post' class='form-control'>
 								</select>
-								<a href="add-post-form.php" id='post_btn' target='_blank'>New Post</a>
+								<a href='#NewPost' class='btn btn-danger label-top' data-toggle='modal' data-target='.bs-modal-sm' id='post_btn'>New Post</a>
 							</div>
 						</div>
 					</div><!--Close row-->
@@ -194,23 +246,116 @@ if(isset($_GET['id'])){
 					</p>
 				</div>
 			</div>
-			<button type='submit' class='btn btn-default'>Submit</button>
+			<center>
+				<button type='submit' class='btn btn-success btn-lg'>Submit</button>
+
+			</center>
 		</form>
 	</div>
-	<script type="text/javascript">
-		$(".upper-case").focusout(function(event){
-			var str = $(this).val()
-			$(this).val(str.charAt(0).toUpperCase() + str.slice(1));
-		})
 
-		$("#namelist_form").submit(function(event){
-			event.preventDefault();
-			var posting = $.post("add-namelist.php", $("#namelist_form").serialize());
+<!-- Start of New Post -->
+
+<div class="modal fade bs-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" >
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">        
+			<div class="modal-body">
+				<center class="modal-header"><h3>New Post</h3></center>
+					<div id="myTabContent" class="tab-content" style="padding-top: 20px;">
+						<div class="tab-pane fade active in" id="signin">
+							<form class="form-horizontal" id='post_form' role="form">
+								<fieldset>
+<!-- New Post -->
+
+	<!-- Post -->
+								<div class="control-group">
+									<div class="controls">
+										<label for='post_name'>Post</label>
+										<input type='text' id='post_name' name='post_name' class='form-control add' required='required' placeholder="Enter New Post"/>
+									</div>
+								</div>
+
+	<!-- District -->
+								<div class="control-group">
+									<div class="controls">
+										<label for='district' class="label-top">District</label>
+										<select name='district' id='district' class='form-control add'>
+											<option selected="true">Select District</option>
+										</select>
+									</div>
+								</div>
+
+	<!-- Pincode -->
+								<div class="control-group">
+									<div class="controls">
+										<label for='pincode' class="label-top">Pincode</label>
+										<input type='number' id='pincode' name='pincode' class='form-control add' required='required' placeholder="Enter Pincode"/>
+									</div>
+								</div>
+
+	<!-- State -->
+								<div class="control-group">
+									<div class="controls">
+										<label for='state' class="label-top">State</label>
+										<input type='text' id='state' name='state' class='form-control add' value='Kerala' readonly='readonly' />
+									</div>
+								</div>
+								</fieldset>
+							</form>
+						</div>
+					</div>
+				<div class="modal-footer">
+					<center>
+						<button type='button' id='post_submit_btn' class='btn btn-success'>Submit</button>
+						<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+					</center>
+				</div><!--close footer-->
+		</div><!--close modal-content-->
+	</div><!--close modal-dialog-->
+</div><!--close modal-->  
+</div>
+
+	<script type="text/javascript">
+		$('#post_submit_btn').click(function(event){
+			var post = $('#post_name').val();
+			var	dist = $('#district').val();
+			var	pin = $('#pincode').val();
+			var	state = $('#state').val();
+
+			//console.log(dist+pin+state);
+
+			var posting = $.post("add-post.php", {
+				post: post,
+				district: dist,
+				pincode: pin,
+				state: state,
+			});
 
 			posting.done(function(data){
-				console.log(data);
+				if (data == 1) {
+					$('#myModal').modal('hide');
+					$('#post').empty();
+					getPostData();
+					$('#post_form').find("#post_name,#pincode").val("");
+				}else{
+					alert("Something is incorrect!!!");
+				}
 			});
 		});
+
+		$(".upper-case").focusout(function(event){
+			var str = $(this).val()
+			var str_arr = str.split(' ');
+			str="";
+
+			for (var i = 0; i < str_arr.length; i++) {
+				str += returnCaps(str_arr[i]) + " ";
+			}
+			$(this).val(str);
+		});
+
+		function returnCaps(str){
+			return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+		}
 		
 	</script>
 </body>

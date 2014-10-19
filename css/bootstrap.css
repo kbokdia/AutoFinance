@@ -1214,9 +1214,9 @@ a.bg-danger:hover {
   background-color: #e4b9b9;
 }
 .page-header {
-  padding-bottom: 9px;
-  margin: 40px 0 20px;
-  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-top: 0px;
+  border-bottom: 1px solid #bdc3c7;
 }
 ul,
 ol {
@@ -4192,7 +4192,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   border-color: #080808;
 }
 .navbar-inverse .navbar-brand {
-  color: #777;
+  color: #dadada;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
@@ -4200,10 +4200,10 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   background-color: transparent;
 }
 .navbar-inverse .navbar-text {
-  color: #777;
+  color: #e6e6e6;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #777;
+  color: #dfdfdf;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
@@ -4545,7 +4545,7 @@ a.list-group-item.active > .badge,
   margin-left: 3px;
 }
 .jumbotron {
-  padding: 30px;
+  padding: 10px;
   margin-bottom: 30px;
   color: inherit;
   background-color: #eee;
@@ -5327,7 +5327,6 @@ a.list-group-item-danger.active:focus {
 }
 .well {
   min-height: 20px;
-  padding: 19px;
   margin-bottom: 20px;
   background-color: #f5f5f5;
   border: 1px solid #e3e3e3;
@@ -5340,11 +5339,12 @@ a.list-group-item-danger.active:focus {
   border-color: rgba(0, 0, 0, .15);
 }
 .well-lg {
-  padding: 24px;
-  border-radius: 6px;
+  margin-top: 80px;
+  padding: 40px;
+  border-radius: 10px;
 }
 .well-sm {
-  padding: 9px;
+  padding: 30px;
   border-radius: 3px;
 }
 .close {
@@ -5486,7 +5486,7 @@ button.close {
             box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
   }
   .modal-sm {
-    width: 300px;
+    width: 500px;
   }
 }
 @media (min-width: 992px) {

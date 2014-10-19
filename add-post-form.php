@@ -11,6 +11,7 @@ if(!authenticate()){
 <head>
 	<title>AutoFinance :: New Post</title>
 	<?php include('add-bootstrap.php'); ?>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
 	<script type="text/javascript">
 		var districts = ["Kozhikode","Kasaragod","Idukki","Ernakulam","Cannanore","Mallapuram","Palghat","Pathanamthitta","Quilon","Trichur","Wayanad","Trivandrum","Kottayam","Alapuzzha"
 ];

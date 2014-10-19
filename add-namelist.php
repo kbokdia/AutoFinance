@@ -29,6 +29,7 @@ if(isset($_POST)){
 	}
 	
 	$name_list->close();
+	header("Location:index.php");
 }
 else
 	echo "0";
