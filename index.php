@@ -27,6 +27,18 @@ if(authenticate()){
             $(document).ready(function(event){
               getPostTableData();
             });
+            
+            function deleteName(event){
+              event.preventDefault();
+              if(confirm('Are you sure?')){
+                var id = $(event.target).attr('href');
+                $('#namelist_table').empty();
+
+                $.post('delete-namelist.php',{id:id},function(data){
+                  getPostTableData();
+                });
+              }
+            }
 
             function getPostTableData(){
               $.post('get-namelist-table.php',{require:'all'},function(data){
@@ -37,6 +49,7 @@ if(authenticate()){
             function setPostTableData(data){
               $('#namelist_table').append(data);
             }
+
           </script>
           ";
 }
@@ -60,15 +73,10 @@ else{
   <head>
     <title>AutoFinance</title>
     <?php include("add-bootstrap.php"); ?>
-
   </head>
   <body>
     <div id="wrapper" class="container">
         <?php echo $str;?>
     </div>
-    
-    <script type="text/javascript">
-    
-    </script>
   </body>
 </html>
