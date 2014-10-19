@@ -136,13 +136,64 @@ else{
     
 
     <script type="text/javascript">
+
+      var is_all = true;
       $("#search_name").keyup(function(event){
           var name = $("#search_name").val();
+          if(name == ""){
+            if(is_all){
+              return;
+            }
+            else{
+              return setAllData();
+            }
+          }
           $('#namelist_rows').empty();
           $.post('get-namelist-table.php',{name: name},function(data){
               setPostTableData(data);
+              is_all = false;
           });
       });
+
+      $("#search_house").keyup(function(event){
+          var house = $("#search_house").val();
+          if(house == ""){
+              if(is_all){
+                return;
+              }
+              else{
+                return setAllData();
+              }
+          }
+          $('#namelist_rows').empty();
+          $.post('get-namelist-table.php',{house:house},function(data){
+            setPostTableData(data);
+            is_all = false;
+          });
+      });
+
+      $('#search_member').keyup(function(event){
+          var member = $('#search_member').val();
+          if(member == ""){
+            if(is_all){
+              return;
+            }
+            else{
+              return setAllData();
+            }
+          }
+          $('#namelist_rows').empty();
+          $.post('get-namelist-table.php',{member:member},function(data){
+            setPostTableData(data);
+          });
+      });
+
+      function setAllData(){
+        $('#namelist_rows').empty();
+        getPostTableData();
+        is_all = true;
+        return;
+      }
     </script>
   </body>
 </html>
