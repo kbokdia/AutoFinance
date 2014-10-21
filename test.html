@@ -1,40 +1,16 @@
-<div id='header'>
-	<p>
-		<ul>
-			<li>Hi ".$_SESSION['s_name']."</li>
-			<li><a href="logout.php">Logout</a></li>
-		</ul>
-	</p>
-</div>
-<br />
-<p>
-	<a href='add-namelist-form.php'>Add new defaultor</a>
-</p>	
-<p>
-	<h3 class='h3'>Namelist</h3>
-	<table class='table'>
-		<th>Name</th>
-		<th>House</th>
-		<th>Added By</th>
-		<th>Actions</th>
-	</table>
-</p>
-
-$('#post_form').submit(function(event){
-			event.preventDefault();
-			var form = $(this),
-				dist = $('#district').val(),
-				pin = $('#pincode').val(),
-				state = $('#state').val(),
-				url = $form.attr('action');
-
-			var posting = $.post("add-post.php", {
-				district: "dist",
-				pincode: "90000",
-				state: "state",
-			});
-
-			posting.done(function(data){
-				alert(data);
-			});
-		});
+<div class='modal fade bs-example-modal-sm' id='view_member_modal' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel' aria-hidden='true'>
+  <div class='modal-dialog modal-sm'>
+    <div class='modal-content'>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Member</h4>
+      </div><!--Header-->
+      <div class="modal-body">
+        <div id='view_member_modal_body'></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!--modal-content-->
+  </div><!--modal-dialog-->
+</div><!--view_member_modal-->

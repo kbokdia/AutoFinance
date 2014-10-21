@@ -105,7 +105,7 @@ if(isset($_POST)){
 			$table_str .= "<td>".$row['name']."</td>";
 			$table_str .= "<td>".$row['house']."</td>";
 			$table_str .= "<td class='hidden-sm hidden-xs'>".$row['added']."</td>";
-			$table_str .= "<td><a href='add-namelist-form.php?id=".$row['id']."'>Edit</a>&nbsp&nbsp<a href='".$row['id']."' class='delete_btn' onclick='deleteName(event)'>Delete</a></td>";
+			$table_str .= "<td><a class='view_member_btn' onclick='viewMember(event);' href='".$row['id']."'>View</a>&nbsp&nbsp<a href='add-namelist-form.php?id=".$row['id']."'>Edit</a>&nbsp&nbsp<a href='".$row['id']."' class='delete_btn' onclick='deleteName(event)'>Delete</a></td>";
 			$table_str .= "</tr>";
 		}
 	}

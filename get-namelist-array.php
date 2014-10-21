@@ -24,6 +24,7 @@ function getRowValues($value){
 	$nameListDataRow['post_id'] = $value['post_id'];
 	$nameListDataRow['photo'] = $value['photo'];
 	$nameListDataRow['vehicle_id'] = $value['vehicle_id'];
+	
 
 	$member_arr = $nameTable->getALLValues(array('id'=>$value['member_id']));
 	$nameListDataRow['added'] = $member_arr[0]['first_name']." ".$member_arr[0]['last_name']." ".$member_arr[0]['middle_name'];
