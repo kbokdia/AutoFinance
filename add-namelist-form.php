@@ -185,7 +185,7 @@ if(isset($_GET['id'])){
 						<div class='col-md-5'>
 							<div class='form-group'>
 								<label for='mobile'>Mobile</label>
-								<input id='mobile' name='mobile' class='form-control' value='<?php echo $nameListRowData['mobile']; ?>' required='required' placeholder='Enter Mobile Number'/>
+								<input id='mobile' name='mobile' class='form-control' value='<?php echo $nameListRowData['mobile']; ?>' required='required' placeholder='9876543210'/>
 							</div>
 						</div>
 
@@ -196,7 +196,7 @@ if(isset($_GET['id'])){
 						<div class='col-md-5'>
 							<div class='form-group'>
 								<label for='phone'>Landline</label>
-								<input id='phone' name='phone' value='<?php echo $nameListRowData['phone']; ?>' class='form-control' placeholder='Enter Landline Number'/>
+								<input id='phone' name='phone' value='<?php echo $nameListRowData['phone']; ?>' class='form-control' placeholder='044-26789123'/>
 							</div>
 						</div>
 					</div><!--Close row-->

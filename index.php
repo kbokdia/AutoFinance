@@ -31,7 +31,7 @@ if(authenticate()){
               </div>
           </p>
 
-          <div class='modal fade bs-example-modal-sm' id='view_member_modal' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel' aria-hidden='true'>
+          <div class='modal fade bs-example-modal-sm' id='view_namelist_modal' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel' aria-hidden='true'>
             <div class='modal-dialog modal-sm'>
               <div class='modal-content'>
                 <div class='modal-header'>
@@ -39,11 +39,11 @@ if(authenticate()){
                   <h4 class='modal-title text-center'>Defaulter</h4>
                 </div><!--Header-->
                 <div class='modal-body'>
-                  <div id='view_member_modal_body'></div>
+                  <div id='view_namelist_modal_body'></div>
                 </div>
               </div><!--modal-content-->
             </div><!--modal-dialog-->
-          </div><!--view_member_modal-->
+          </div><!--view_namelist_modal-->
           
           <script type='text/javascript'>
             $(document).ready(function(event){
@@ -67,10 +67,9 @@ if(authenticate()){
               var id = $(event.target).attr('href');
               
               $.post('view-namelist.php',{id:id},function(data){
-                $('#view_member_modal_body').empty();
-                $('#view_member_modal_body').append(data);
-                $('#view_member_table').children().addClass('remove_border');
-                $('#view_member_modal').modal('show');
+                $('#view_namelist_modal_body').empty();
+                $('#view_namelist_modal_body').append(data);
+                $('#view_namelist_modal').modal('show');
               });
             }
 

@@ -24,7 +24,7 @@ if(isset($_POST['id'])){
 	$nameListRowData['state'] = $post_arr[0]['state'];
 
 
-	$view_str = "<table id='view_member_table' class='table'>
+	$view_str = "<table id='view_namelist_table' class='table'>
 				<tr><td style='border: 0px;'>Name</td><td style='border: 0px;'>".$nameListRowData['name']."</td></tr>
 				<tr><td style='border: 0px;'>Father</td><td style='border: 0px;'>".$nameListRowData['f_first_name']." ".$nameListRowData['f_last_name']."</td></tr>
 				<tr><td style='border: 0px;'>House</td><td style='border: 0px;'>".$nameListRowData['house']."</td></tr>
@@ -34,6 +34,8 @@ if(isset($_POST['id'])){
 				<tr><td style='border: 0px;'>District</td><td style='border: 0px;'>".$nameListRowData['district']."</td></tr>
 				<tr><td style='border: 0px;'>Pincode</td><td style='border: 0px;'>".$nameListRowData['pincode']."</td></tr>
 				<tr><td style='border: 0px;'>State</td><td style='border: 0px;'>".$nameListRowData['state']."</td></tr>
+				<tr><td style='border: 0px;'>Mobile</td><td style='border: 0px;'>".$nameListRowData['mobile']."</td></tr>
+				<tr><td style='border: 0px;'>Phone</td><td style='border: 0px;'>".$nameListRowData['phone']."</td></tr>
 			</table>";
 
 	echo $view_str;
