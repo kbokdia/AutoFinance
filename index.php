@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Auto Finance</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <?php include('add-bootstrap.html'); ?>
+  </head>
+  <body>
+
 <?php
 session_start();
 require_once("authenticate.php");
@@ -8,8 +17,7 @@ $str;
 if(authenticate()){
   include("add-navbar.php");
 
-  $str = "
-          <br/>
+  $str = "<br/>
           <p class='hello'>
             <h3 class='h1'><center>Namelist</center></h1>
             <div id='namelist_table'>
@@ -116,16 +124,6 @@ else{
       </div>";
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>AutoFinance</title>
-    <?php include("add-bootstrap.php"); ?>
-    <link href="style.css" rel="stylesheet" type="text/css">
-  </head>
-  <body>
-
-
     <div id="wrapper" class="container">
 
         <?php echo $str;?>
@@ -137,16 +135,9 @@ else{
       var is_all = true;
       $("#search_name").keyup(function(event){
           var name = $("#search_name").val();
-          if(name == ""){
-            if(is_all){
-              return;
-            }
-            else{
-              return setAllData();
-            }
-          }
-          $('#namelist_rows').empty();
+
           $.post('get-namelist-table.php',{name: name},function(data){
+            $('#namelist_rows').empty();
               setPostTableData(data);
               is_all = false;
           });
@@ -154,16 +145,9 @@ else{
 
       $("#search_house").keyup(function(event){
           var house = $("#search_house").val();
-          if(house == ""){
-              if(is_all){
-                return;
-              }
-              else{
-                return setAllData();
-              }
-          }
-          $('#namelist_rows').empty();
+        
           $.post('get-namelist-table.php',{house:house},function(data){
+            $('#namelist_rows').empty();
             setPostTableData(data);
             is_all = false;
           });
@@ -171,17 +155,11 @@ else{
 
       $('#search_member').keyup(function(event){
           var member = $('#search_member').val();
-          if(member == ""){
-            if(is_all){
-              return;
-            }
-            else{
-              return setAllData();
-            }
-          }
-          $('#namelist_rows').empty();
+          
           $.post('get-namelist-table.php',{member:member},function(data){
+            $('#namelist_rows').empty();
             setPostTableData(data);
+            is_all = false;
           });
       });
 

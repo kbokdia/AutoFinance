@@ -2,6 +2,7 @@
 session_start();
 require_once("authenticate.php");
 require_once("modules/Table.inc");
+require_once('admin.php');
 
 if(!authenticate()){
 	header("Location:index.php");
@@ -100,20 +101,32 @@ if(isset($_POST)){
 			}
 		}
 
-		foreach ($nameListDataTable as $key => $row) {
-			$table_str .= "<tr>";
-			$table_str .= "<td>".$row['name']."</td>";
-			$table_str .= "<td>".$row['house']."</td>";
-			$table_str .= "<td class='hidden-sm hidden-xs'>".$row['added']."</td>";
-			$table_str .= "<td><a class='view_member_btn' onclick='viewMember(event);' href='".$row['id']."'>View</a>&nbsp&nbsp<a href='add-namelist-form.php?id=".$row['id']."'>Edit</a>&nbsp&nbsp<a href='".$row['id']."' class='delete_btn' onclick='deleteName(event)'>Delete</a></td>";
-			$table_str .= "</tr>";
+		if(in_array($_SESSION['s_username'], $admin)){
+			foreach ($nameListDataTable as $key => $row) {
+				$table_str .= "<tr>";
+				$table_str .= "<td>".$row['name']."</td>";
+				$table_str .= "<td>".$row['house']."</td>";
+				$table_str .= "<td class='hidden-sm hidden-xs'>".$row['added']."</td>";
+				$table_str .= "<td><a class='view_member_btn' onclick='viewMember(event);' href='".$row['id']."'>View</a>&nbsp&nbsp<a href='add-namelist-form.php?id=".$row['id']."'>Edit</a>&nbsp&nbsp<a href='".$row['id']."' class='delete_btn' onclick='deleteName(event)'>Delete</a></td>";
+				$table_str .= "</tr>";
+			}
+		}
+		else{
+			foreach ($nameListDataTable as $key => $row) {
+				$table_str .= "<tr>";
+				$table_str .= "<td>".$row['name']."</td>";
+				$table_str .= "<td>".$row['house']."</td>";
+				$table_str .= "<td class='hidden-sm hidden-xs'>".$row['added']."</td>";
+				$table_str .= "<td><a class='view_member_btn' onclick='viewMember(event);' href='".$row['id']."'>View</a></td>";
+				$table_str .= "</tr>";
+			}
 		}
 	}
 
 		
 
 	$table_str .= "</table>";
-	echo $table_str;	
+	echo $table_str;
 }
 
 ?>

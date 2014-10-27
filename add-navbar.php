@@ -21,7 +21,8 @@ $navbar_str = "<div id='header'>
                   <li class='dropdown'>
                     <a href='#' class='dropdown-toggle' data-toggle='dropdown'>".$_SESSION['s_name']." <span class='caret'></span></a>
                     <ul class='dropdown-menu' role='menu'>
-                      <li class='nav-right'><a id='view_profile_btn' onclick='view_profile(event);' href='view-profile.php'><span class='glyphicon glyphicon-user'></span> &nbspMy details</a></li>
+                      <li class='nav-right'><a href='add-member.php'><span class='glyphicon glyphicon-user'></span> &nbspAdd Member</a></li>
+                      <li class='nav-right'><a id='view_profile_btn' onclick='view_profile(event);' href='view-profile.php'><span class='glyphicon glyphicon-cog'></span> &nbspMy details</a></li>
                       <li class='nav-right'><a href='logout.php'><span class='glyphicon glyphicon-log-out'></span> &nbspLogout</a></li>
                     </ul>
                   </li>

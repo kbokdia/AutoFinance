@@ -1,16 +1,17 @@
-<div class='modal fade bs-example-modal-sm' id='view_member_modal' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel' aria-hidden='true'>
-  <div class='modal-dialog modal-sm'>
-    <div class='modal-content'>
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Member</h4>
-      </div><!--Header-->
-      <div class="modal-body">
-        <div id='view_member_modal_body'></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div><!--modal-content-->
-  </div><!--modal-dialog-->
-</div><!--view_member_modal-->
+<div id='profile'>
+	<div class='row'>
+		<div class='col-md-12'>
+			<center><img src='".$memberData['photo']."' class='img-circle'></center>
+		</div>
+	</div>
+	<div id='profile_details'>
+		<div class='row'>
+			<div class='col-md-3 col-md-offset-4'>
+				<h4 class='h4'>Name</h4>
+			</div>
+			<div class='col-md-3 col-md-offset-7'>
+				<p>".$memberData['name']."</p>
+			</div>
+		</div>
+	</div>
+</div>

@@ -11,7 +11,7 @@ if(isset($_POST['email']))
 
 		$members = new Table("members");
 		$constraints = array('email' => $username); 
-		$arr = $members->getALLValues($constraints);
+		$arr = $members->getALL();
 		foreach ($arr as $key => $value) {
 			if($value['email'] == $username){
 				if($value['password'] == $password){

@@ -1,3 +1,5 @@
 <?php
-echo file_get_contents("http://www.pincode.net.in/KERALA");
+session_start();
+require_once('admin.php');
+print_r($admin);
 ?>

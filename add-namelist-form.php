@@ -43,7 +43,7 @@ if(isset($_GET['id'])){
 <html lang="en">
 <head>
 	<title>AutoFinance :: Add new defaultor</title>
-	<?php include("add-bootstrap.php");?>
+	<?php include('add-bootstrap.html'); ?>
 
 	<link href="style.css" rel="stylesheet" type="text/css">
 	
@@ -224,7 +224,6 @@ if(isset($_GET['id'])){
 			</div>
 			<center>
 				<button type='submit' class='btn btn-success btn-lg'>Submit</button>
-
 			</center>
 		</form>
 	</div>
