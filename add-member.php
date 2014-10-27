@@ -4,6 +4,7 @@ require_once("authenticate.php");
 require_once("modules/Table.inc");
 require_once("admin.php");
 require_once("function_random_string.php");
+require_once("modules/get-gmail-image.php");
 
 if(!authenticate()){
 	header("Location:index.php");
@@ -19,12 +20,13 @@ if(isset($_POST['id'])){
 	$data = array("first_name"=>$_POST['first_name'], "last_name"=>$_POST['last_name'],"middle_name"=>$_POST["middle_name"]);
 	$name->save($data);
 	$memberData["name_id"] = $name->getLastid();
+	$memberData['image'] = getProfileImageLink($_POST['email']);
 
-	$message = "Hi ".$_POST['first_name']." ".$_POST['last_name']." ".$_POST['middle_name']."\n";
+	$message = "Hi ".$_POST['first_name']." ".$_POST['last_name']."\n\n";
 	$message .= "Thank for using Auto Finance. These are your credentials\n\n";
 	$message .= "Email : ".$memberData['email']."\n";
 	$message .= "Password : ".$memberData['password']."\n\n";
-	$message .= "Click here to login <a href='http://www.incorelabs.com/AutoFinance'>Auto Finance</a>";
+	$message .= "Click here to login http://www.incorelabs.com/AutoFinance";
 	$subject = "Auto Finance Credentials";
 	
 	mail($memberData['email'], $subject, $message,"From: kbokdia@incorelabs.com");
@@ -108,13 +110,13 @@ else{
 								<div class='col-md-4'>
 									<div class='form-group'>
 										<label for='email'>Email</label>
-										<input id='email' type='email' name='email' class='form-control upper-case' value='<?php echo $memberRowData['email']; ?>' required='required' placeholder='Enter email address' />
+										<input id='email' type='email' name='email' class='form-control' value='<?php echo $memberRowData['email']; ?>' required='required' placeholder='Enter email address' />
 									</div>
 								</div>
 								<div class='col-md-4'>
 									<div class='form-group'>
 										<label for='mobile'>Mobile</label>
-										<input id='mobile' type='number' name='mobile' class='form-control upper-case' value='<?php echo $memberRowData['mobile']; ?>' required='required' placeholder='Enter mobile number' />
+										<input id='mobile' type='number' name='mobile' class='form-control' value='<?php echo $memberRowData['mobile']; ?>' required='required' placeholder='Enter mobile number' />
 									</div>
 								</div>
 							</div><!-- Close inner Row -->
@@ -132,5 +134,6 @@ else{
 			</form>
 		</div>
 	</div>
+	<script src='js/script.js' type='text/javascript'></script>
 </body>
 </html>

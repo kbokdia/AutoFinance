@@ -288,7 +288,7 @@ if(isset($_GET['id'])){
 	</div><!--close modal-dialog-->
 </div><!--close modal-->  
 </div>
-
+	<script src='js/script.js' type='text/javascript'></script>
 	<script type="text/javascript">
 		$('#post_submit_btn').click(function(event){
 			var post = $('#post_name').val();
@@ -316,21 +316,6 @@ if(isset($_GET['id'])){
 				}
 			});
 		});
-
-		$(".upper-case").focusout(function(event){
-			var str = $(this).val()
-			var str_arr = str.split(' ');
-			str="";
-
-			for (var i = 0; i < str_arr.length; i++) {
-				str += returnCaps(str_arr[i]) + " ";
-			}
-			$(this).val(str);
-		});
-
-		function returnCaps(str){
-			return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-		}
 		
 	</script>
 </body>
