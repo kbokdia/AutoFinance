@@ -15,3 +15,29 @@
 		</div>
 	</div>
 </div>
+
+<tr>
+                    <td><input type='text' placeholder='Search' class='form-control' id='search_name' /></td>
+                    <td><input type='text' placeholder='Search' class='form-control' id='search_house' /></td>
+                    <td class='hidden-sm hidden-xs'><input type='text' placeholder='Search' id='search_member' class='form-control' /></td>
+                  </tr>
+
+                  $("#search_house").keyup(function(event){
+          var house = $("#search_house").val();
+        
+          $.post('get-namelist-table.php',{house:house},function(data){
+            $('#namelist_rows').empty();
+            setPostTableData(data);
+            is_all = false;
+          });
+      });
+
+      $('#search_member').keyup(function(event){
+          var member = $('#search_member').val();
+          
+          $.post('get-namelist-table.php',{member:member},function(data){
+            $('#namelist_rows').empty();
+            setPostTableData(data);
+            is_all = false;
+          });
+      });

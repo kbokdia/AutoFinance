@@ -19,6 +19,10 @@ if(authenticate()){
 
   $str = "<br/>
           <p class='hello'>
+
+          <input class='search_input search_wrap' type='text' id='search_name' placeholder='Search'>
+          <input class='search_input search_wrap' type='submit'>
+          
             <h3 class='h1'><center>Namelist</center></h1>
             <div id='namelist_table'>
               <table class='table table-striped'>
@@ -28,11 +32,6 @@ if(authenticate()){
                     <th>House</th>
                     <th class='hidden-sm hidden-xs'>Added By</th>
                     <th>Actions</th>
-                  </tr>
-                  <tr>
-                    <td><input type='text' placeholder='Search' class='form-control' id='search_name' /></td>
-                    <td><input type='text' placeholder='Search' class='form-control' id='search_house' /></td>
-                    <td class='hidden-sm hidden-xs'><input type='text' placeholder='Search' id='search_member' class='form-control' /></td>
                   </tr>
                 </thead>
                 <tbody id='namelist_rows'></tbody>
@@ -95,33 +94,38 @@ if(authenticate()){
           ";
 }
 else{
+  $alert_msg = "";
+
+  if(isset($_GET['error'])){
+    $alert_msg = "<div class='alert alert-danger' role='alert'>".$_GET['error']."</div>";
+  }
+  
   $str = "
-      <div class='container'>
-        <div class='well well-lg'>
-        <h1 class='page-header'><center>Login</center></h1>
-        <form action='checkuser.php' method='POST' role='form' id='login_form'>
-          <div class='row'>
-            <div class='form-group'>
-              <div>
-                <label for='email'>Email address</label>
-                <input type='email' class='form-control' id='email' name='email' placeholder='Enter email' required='required'>
-              </div>
-            </div>
-          </div>
-          <div class='row'>
-            <div class='form-group'>
-              <div class='top'> 
-                <label for='password'>Password</label>
-                <input type='password' class='form-control' id='password' name='password' placeholder='Password' required='required'>
-              </div>
-            </div>
-          </div>
-          <center>
-            <button type='submit' id='login_btn' class='btn btn-success btn-lg top'>Login</button>
-          </center>
-        </form>
+      <div class='login_bg'>
+        <div class='login'>
+      <div class='login-screen'>
+        <div class='app-title'>
+          <h1>Login</h1>
         </div>
-      </div>";
+
+        <div class='login-form'>
+          <div class='control-group'>
+          <form action='checkuser.php' method='POST' role='form' id='login_form'>
+          <input type='text' class='login-field login_main' id='email' name='email' placeholder='Email or Mobile' required='required'>
+          <label class='login-field-icon fui-user' for='email'></label>
+          </div>
+
+          <div class='control-group'>
+          <input type='password' class='login-field login_main' id='password' name='password' placeholder='Enter Password' required='required'>
+          <label class='login-field-icon fui-lock' for='password'></label>
+          </div>
+
+          <button type='submit' id='login_btn' class='btnnew'>login</button>
+          <a class='login-link' href='#'>Lost your password?</a>".$alert_msg."
+        </div>
+      </div>
+    </div>
+    </div>";
 }
 ?>
     <div id="wrapper" class="container">

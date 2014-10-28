@@ -13,7 +13,7 @@ if(isset($_POST['email']))
 		$constraints = array('email' => $username); 
 		$arr = $members->getALL();
 		foreach ($arr as $key => $value) {
-			if($value['email'] == $username){
+			if($value['email'] == $username || $value['mobile'] == $username){
 				if($value['password'] == $password){
 					$found = true;
 					session_regenerate_id();

@@ -6,5 +6,5 @@ if(!authenticate()){
 	exit;
 }
 
-$admin = array('kbokdia@gmail.com');
+$admin = array('kbokdia@gmail.com','9444610605');
 ?>
