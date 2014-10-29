@@ -16,9 +16,16 @@ $str;
 
 if(authenticate()){
   include("add-navbar.php");
+  $alert_msg = "";
+
+  if (isset($_GET['alert'])) {
+    if ($_GET['alert'] == 1) {
+      $alert_msg = "<div class='alert alert-success' role='alert'>New member has been registered. Please check the registered email to know the password</div>";
+    }
+  }
 
   $str = "<br/>
-          <p class='hello'>
+          <p class='hello'>".$alert_msg."
 
           <input class='search_input search_wrap' type='text' id='search_name' placeholder='Search'>
           <input class='search_input search_wrap' type='submit'>
@@ -133,6 +140,7 @@ else{
         <?php echo $str;?>
     </div>
     
+    <script src='js/script.js' type='text/javascript'></script>
 
     <script type="text/javascript">
 
@@ -147,25 +155,7 @@ else{
           });
       });
 
-      $("#search_house").keyup(function(event){
-          var house = $("#search_house").val();
-        
-          $.post('get-namelist-table.php',{house:house},function(data){
-            $('#namelist_rows').empty();
-            setPostTableData(data);
-            is_all = false;
-          });
-      });
-
-      $('#search_member').keyup(function(event){
-          var member = $('#search_member').val();
-          
-          $.post('get-namelist-table.php',{member:member},function(data){
-            $('#namelist_rows').empty();
-            setPostTableData(data);
-            is_all = false;
-          });
-      });
+      
 
       function setAllData(){
         $('#namelist_rows').empty();

@@ -11,37 +11,69 @@ if(!authenticate()){
 	exit;
 }
 
+include('get-member-array.php');
+
+function checkEmailId($id){
+	$membersTable = new Table('members');
+	$memberTableData = $membersTable->getAll();
+	$found = 0;
+
+	foreach ($memberTableData as $key => $value) {
+		if($value['email'] == $id){
+			$found = 1;
+			break;
+		}
+	}
+	$membersTable->close();
+	return $found;
+}
+
+$alert_msg = "";
+$memberRowData = array();
 if(isset($_POST['id'])){
-	$memberData = array('mobile'=>$_POST['mobile'],'email'=>$_POST['email']);
-	$memberData['password'] = $_POST['first_name'].random_string(4);
-
-	$name = new Table("names");
-	
-	$data = array("first_name"=>$_POST['first_name'], "last_name"=>$_POST['last_name'],"middle_name"=>$_POST["middle_name"]);
-	$name->save($data);
-	$memberData["name_id"] = $name->getLastid();
-	$memberData['image'] = getProfileImageLink($_POST['email']);
-
-	$message = "Hi ".$_POST['first_name']." ".$_POST['last_name']."\n\n";
-	$message .= "Thank for using Auto Finance. These are your credentials\n\n";
-	$message .= "Email : ".$memberData['email']."\n";
-	$message .= "Password : ".$memberData['password']."\n\n";
-	$message .= "Click here to login http://www.incorelabs.com/AutoFinance";
-	$subject = "Auto Finance Credentials";
-	
-	mail($memberData['email'], $subject, $message,"From: kbokdia@incorelabs.com");
-
+	include('addslashes-to-POST.php');
 	$memberTable = new Table('members');
-	
-	if($_POST['id'] == 0){
-		$memberTable->save($memberData);
+
+	if(checkEmailId($_POST['email']) == 0){
+
+		$memberData = array('mobile'=>$_POST['mobile'],'email'=>$_POST['email']);
+		$memberData['password'] = $_POST['first_name'].random_string(4);
+
+		$name = new Table("names");
+		
+		$data = array("first_name"=>$_POST['first_name'], "last_name"=>$_POST['last_name'],"middle_name"=>$_POST["middle_name"]);
+		$name->save($data);
+		$memberData["name_id"] = $name->getLastid();
+		$memberData['image'] = getProfileImageLink($_POST['email']);
+
+		$message = "Hi ".$_POST['first_name']." ".$_POST['last_name']."\n\n";
+		$message .= "Thank for using Auto Finance. These are your credentials\n\n";
+		$message .= "Email : ".$memberData['email']."\n";
+		$message .= "Password : ".$memberData['password']."\n\n";
+		$message .= "Click here to login http://www.incorelabs.com/AutoFinance";
+		$subject = "Auto Finance Credentials";
+		
+		mail($memberData['email'], $subject, $message,"From: sksk381@gmail.com");
+		
+		if($_POST['id'] == 0){
+			$memberTable->save($memberData);
+			$memberTable->close();
+			header('Location:index.php?alert=1');
+		}
+	}
+	else{
+
+		$memberTable_arr = $memberTable->getAllValues(array('email'=>'kbokdia@gmail.com'));
+		$memberRowData = getMemberArray($memberTable_arr[0]);
+		$memberRowData['id'] = 0;
+		$alert_msg = "<div class='alert alert-danger' role='alert'>This email is already registered</div>";
 	}
 
-	header('Location:index.php');
 }
 
 if(in_array($_SESSION['s_username'],$admin)){
-	$memberRowData = array(
+	if(!isset($memberRowData['id'])){
+		$memberRowData = array(
 			'id'=>0,
 			'first_name'=>null,
 			'last_name'=>null,
@@ -49,6 +81,7 @@ if(in_array($_SESSION['s_username'],$admin)){
 			'mobile'=>null,
 			'email'=>null,
 			);
+	}
 }
 else{
 	header("Location:index.php");
@@ -65,6 +98,7 @@ else{
 	
 	<div id="wrapper" class="container">
 		<div class='well well-lg'>
+			<?php echo $alert_msg; ?>
 			<p>
 				<center><h1 class='page-header title'>Member Details</h1></center>
 			</p>
