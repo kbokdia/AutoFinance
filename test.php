@@ -4,6 +4,7 @@ require_once("modules/Table.inc");
 $handler = fopen("postList.txt", "r");
 
 $postTable = new Table('posts');
+header('Location:index.php');
 exit;
 $counter = 1;
 $temp_arr = array();

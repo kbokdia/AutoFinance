@@ -6,7 +6,7 @@ function getRowValues($value){
 
 	$nameListDataRow['id'] = $value['id'];
 	$name_arr = $nameTable->getALLValues(array('id'=>$value['name_id']));
-	$nameListDataRow['name'] = $name_arr[0]['first_name']." ".$name_arr[0]['last_name']." ".$name_arr[0]['middle_name'];
+	$nameListDataRow['name'] = $name_arr[0]['first_name']." ".$name_arr[0]['middle_name']." ".$name_arr[0]['last_name'];
 	$nameListDataRow['first_name'] = $name_arr[0]['first_name'];
 	$nameListDataRow['last_name'] = $name_arr[0]['last_name'];
 	$nameListDataRow['middle_name'] = $name_arr[0]['middle_name'];
@@ -26,9 +26,10 @@ function getRowValues($value){
 	$nameListDataRow['vehicle_id'] = $value['vehicle_id'];
 	$nameListDataRow['reason'] = $value['reason'];
 	
-
-	$member_arr = $nameTable->getALLValues(array('id'=>$value['member_id']));
-	$nameListDataRow['added'] = $member_arr[0]['first_name']." ".$member_arr[0]['last_name']." ".$member_arr[0]['middle_name'];
+	$memberTable = new Table('members');
+	$temp = $memberTable->getALLValues(array('id'=>$value['member_id']));
+	$member_arr = $nameTable->getALLValues(array('id'=>$temp[0]['name_id']));
+	$nameListDataRow['added'] = $member_arr[0]['first_name']." ".$member_arr[0]['middle_name']." ".$member_arr[0]['last_name'];
 	$nameTable->close();
 	return $nameListDataRow;
 }
