@@ -22,6 +22,9 @@ if(authenticate()){
     if ($_GET['alert'] == 1) {
       $alert_msg = "<div class='alert alert-success' role='alert'>New member has been registered. Please check the registered email to know the password</div>";
     }
+    elseif ($_GET['alert'] == 2) {
+      $alert_msg = "<div class='alert alert-success' role='alert'>Password has changed successfully!!!</div>";
+    }
   }
 
   $str = "<br/>
@@ -110,29 +113,31 @@ else{
   $str = "
       <div class='login_bg'>
         <div class='login'>
-      <div class='login-screen'>
-        <div class='app-title'>
-          <h1>Login</h1>
-        </div>
-
-        <div class='login-form'>
-          <div class='control-group'>
-          <form action='checkuser.php' method='POST' role='form' id='login_form'>
-          <input type='text' class='login-field login_main' id='email' name='email' placeholder='Email or Mobile' required='required'>
-          <label class='login-field-icon fui-user' for='email'></label>
+        <div class='login-screen'>
+          <div class='app-title'>
+            <h1>Login</h1>
           </div>
 
-          <div class='control-group'>
-          <input type='password' class='login-field login_main' id='password' name='password' placeholder='Enter Password' required='required'>
-          <label class='login-field-icon fui-lock' for='password'></label>
-          </div>
+          <div class='login-form'>
+            
+            <form action='checkuser.php' method='POST' role='form' id='login_form'>
+              <div class='control-group'>
+                <input type='text' class='login-field login_main' id='email' name='email' placeholder='Email or Mobile' required='required' autofocus='autofocus' />
+                <label class='login-field-icon fui-user' for='email'></label>
+              </div>
 
-          <button type='submit' id='login_btn' class='btnnew'>login</button>
-          <a class='login-link' href='#'>Lost your password?</a>".$alert_msg."
-        </div>
-      </div>
-    </div>
-    </div>";
+              <div class='control-group'>
+                <input type='password' class='login-field login_main' id='password' name='password' placeholder='Enter Password' required='required'>
+                <label class='login-field-icon fui-lock' for='password'></label>
+              </div>
+
+                <button type='submit' id='login_btn' class='btnnew'>login</button>
+            </form>
+            ".$alert_msg."
+          </div><!--Login form-->
+        </div><!--Login Screen-->
+      </div><!--Login-->
+    </div><!--Login_bg-->";
 }
 ?>
     <div id="wrapper" class="container">

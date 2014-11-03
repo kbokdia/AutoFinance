@@ -164,3 +164,11 @@ box-shadow: none;
 .search_input[type="submit"]:hover {
   opacity: 0.8;
 }
+
+.add-green-border-input{
+  border: 2px solid green;
+}
+
+.add-red-border-input{
+  border: 2px solid red;
+}

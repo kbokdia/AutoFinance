@@ -48,6 +48,7 @@ $navbar_str = "<div id='header'>
                 </div><!--Header-->
                 <div class='modal-body'>
                   <div id='view_member_modal_body'></div>
+                  <center><a href='password.php'>Change password</a></center>
                 </div>
               </div><!--modal-content-->
             </div><!--modal-dialog-->

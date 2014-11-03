@@ -89,7 +89,7 @@ else{
 ?>
 <html lang='en'>
 <head>
-	<title>Add Member</title>
+	<title>AutoFinance :: Add Member</title>
 	<?php include('add-bootstrap.html'); ?>
 	<link href="style.css" rel="stylesheet" type="text/css">
 </head>
