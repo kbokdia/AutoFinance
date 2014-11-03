@@ -9,7 +9,17 @@ if(!authenticate()){
 }
 
 if(isset($_POST)){
-	$name_list_data = array("house"=>$_POST['house'],"address1"=>$_POST['address1'],"address2"=>$_POST['address2'],"mobile"=>$_POST['mobile'],"phone"=>$_POST['phone'],"post_id"=>$_POST['post'],"member_id"=>$_POST['member_id']);
+	$reason = "";
+	
+	if(isset($_POST['reason'])){
+		$temp = $_POST['reason'];
+		foreach ($temp as $key => $value) {
+			$reason .= $value.", ";
+		}
+		$reason = rtrim($reason,", ");
+	}
+
+	$name_list_data = array("house"=>$_POST['house'],"address1"=>$_POST['address1'],"address2"=>$_POST['address2'],"mobile"=>$_POST['mobile'],"phone"=>$_POST['phone'],"post_id"=>$_POST['post'],"member_id"=>$_POST['member_id'],"reason"=>$reason);
 	$name = new Table("names");
 	
 	$data = array("first_name"=>$_POST['first_name'], "last_name"=>$_POST['last_name'],"middle_name"=>$_POST["middle_name"]);
@@ -29,7 +39,7 @@ if(isset($_POST)){
 	}
 	
 	$name_list->close();
-	header("Location:index.php");
+	header("Location:index.php?alerts=".$reason);
 }
 else
 	echo "0";

@@ -36,7 +36,7 @@ if(isset($_POST)){
 
 	if(isset($_POST['name'])){
 		$nameListTable = new Table('namelist');
-		$sql = "SELECT * FROM namelist WHERE name_id IN (SELECT id FROM names WHERE first_name LIKE '%".$_POST['name']."%' OR last_name LIKE '%".$_POST['name']."%') OR father_name_id IN (SELECT id FROM names WHERE first_name LIKE '%".$_POST['name']."%' OR last_name LIKE '%".$_POST['name']."%') OR house LIKE '%".$_POST['name']."%' OR address1 LIKE '%".$_POST['name']."%' OR mobile LIKE '%".$_POST['name']."%' OR member_id IN (SELECT id FROM names WHERE first_name LIKE '%".$_POST['name']."%' OR last_name LIKE '%".$_POST['name']."%') OR post_id IN (SELECT id FROM posts WHERE post LIKE '%".$_POST['name']."%' OR district LIKE '%".$_POST['name']."%' OR pincode LIKE '%".$_POST['name']."%') OR phone LIKE '%".$_POST['name']."%'";
+		$sql = "SELECT * FROM namelist WHERE name_id IN (SELECT id FROM names WHERE first_name LIKE '%".$_POST['name']."%' OR last_name LIKE '%".$_POST['name']."%') OR father_name_id IN (SELECT id FROM names WHERE first_name LIKE '%".$_POST['name']."%' OR last_name LIKE '%".$_POST['name']."%') OR house LIKE '%".$_POST['name']."%' OR address1 LIKE '%".$_POST['name']."%' OR mobile LIKE '%".$_POST['name']."%' OR member_id IN (SELECT id FROM names WHERE first_name LIKE '%".$_POST['name']."%' OR last_name LIKE '%".$_POST['name']."%') OR post_id IN (SELECT id FROM posts WHERE post LIKE '%".$_POST['name']."%' OR district LIKE '%".$_POST['name']."%' OR pincode LIKE '%".$_POST['name']."%') OR phone LIKE '%".$_POST['name']."%' OR reason LIKE '%".$_POST['name']."%'";
 		$nameList = $nameListTable->getArrayResult($sql);
 
 		if(is_null($nameList)){

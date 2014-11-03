@@ -36,6 +36,7 @@ if(isset($_POST['id'])){
 				<tr><td style='border: 0px;'>State</td><td style='border: 0px;'>".$nameListRowData['state']."</td></tr>
 				<tr><td style='border: 0px;'>Mobile</td><td style='border: 0px;'>".$nameListRowData['mobile']."</td></tr>
 				<tr><td style='border: 0px;'>Phone</td><td style='border: 0px;'>".$nameListRowData['phone']."</td></tr>
+				<tr><td style='border: 0px;'>Reason</td><td style='border: 0px;'>".$nameListRowData['reason']."</td></tr>
 			</table>";
 
 	echo $view_str;

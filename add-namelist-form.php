@@ -102,7 +102,7 @@ if(isset($_GET['id'])){
 							<div class='col-md-5'>
 								<div class='form-group'>
 									<label for='first_name'>Full Name</label>
-									<input id='first_name' name='first_name' class='form-control upper-case' value='<?php echo $nameListRowData['first_name']; ?>' required='required' placeholder='Joseph Sunny' />
+									<input id='first_name' name='first_name' class='form-control upper-case' value='<?php echo $nameListRowData['first_name']; ?>' required='required' placeholder='Enter name as "Joseph Sunny"' />
 								</div>
 							</div>
 							
@@ -113,7 +113,7 @@ if(isset($_GET['id'])){
 							<div class='col-md-5'>
 								<div class='form-group'>
 									<label for='last_name'>Initials</label>
-									<input id='last_name' name='last_name' class='form-control upper-case' value='<?php echo $nameListRowData['last_name']; ?>' placeholder='S.V'/>
+									<input id='last_name' name='last_name' class='form-control upper-case' value='<?php echo $nameListRowData['last_name']; ?>' placeholder='Enter initials as "S.V"'/>
 								</div>
 							</div>
 						</div><!-- Close inner Row -->
@@ -130,7 +130,7 @@ if(isset($_GET['id'])){
 							<div class='col-md-5'>
 								<div class='form-group'>
 									<label for='father_first_name'>Full Name</label>
-									<input id='father_first_name' name='father_first_name' class='form-control upper-case' value='<?php echo $nameListRowData['f_first_name']; ?>' required='required' placeholder='Sunny Johnson'/>
+									<input id='father_first_name' name='father_first_name' class='form-control upper-case' value='<?php echo $nameListRowData['f_first_name']; ?>' required='required' placeholder='Enter name as "Sunny Johnson"'/>
 								</div>
 							</div>
 		
@@ -141,7 +141,7 @@ if(isset($_GET['id'])){
 							<div class='col-md-5'>
 								<div class='form-group'>
 									<label for='father_last_name'>Initials</label>
-									<input id='father_last_name' name='father_last_name' class='form-control upper-case' value='<?php echo $nameListRowData['f_last_name']; ?>' placeholder='V'/>
+									<input id='father_last_name' name='father_last_name' class='form-control upper-case' value='<?php echo $nameListRowData['f_last_name']; ?>' placeholder='Enter initials as "V.K"'/>
 								</div>
 							</div>
 						</div><!-- Close inner Row -->
@@ -185,7 +185,7 @@ if(isset($_GET['id'])){
 						<div class='col-md-5'>
 							<div class='form-group'>
 								<label for='mobile'>Mobile</label>
-								<input id='mobile' name='mobile' class='form-control' value='<?php echo $nameListRowData['mobile']; ?>' required='required' placeholder='9876543210'/>
+								<input id='mobile' name='mobile' class='form-control' value='<?php echo $nameListRowData['mobile']; ?>' required='required' placeholder='Enter mobile as "9876543210"'/>
 							</div>
 						</div>
 
@@ -196,7 +196,7 @@ if(isset($_GET['id'])){
 						<div class='col-md-5'>
 							<div class='form-group'>
 								<label for='phone'>Landline</label>
-								<input id='phone' name='phone' value='<?php echo $nameListRowData['phone']; ?>' class='form-control' placeholder='044-26789123'/>
+								<input id='phone' name='phone' value='<?php echo $nameListRowData['phone']; ?>' class='form-control' placeholder='Enter phone as "044-26789123"'/>
 							</div>
 						</div>
 					</div><!--Close row-->
@@ -214,6 +214,27 @@ if(isset($_GET['id'])){
 				</div><!--Close contact panel-->
 			</div><!--Close Contact row-->
 			<div class='row'>
+				<div class='panel panel-success'>
+					<div class='panel-heading'>
+						<h4 class='panel-title'>Reason</h4>
+					</div>
+					<div class='panel-body'>
+						<div class='row'>
+							<div class='checkbox' style='padding-left:10px'>
+								
+									<label><input type='checkbox' name='reason[]' value='court case' /> Court Case</label><br />
+									<label><input type='checkbox' name='reason[]' value='party dues defaulting' /> Party Dues defaulting</label><br />
+									<label><input type='checkbox' name='reason[]' value='liquor' /> Liquor </label><br />
+									<label><input type='checkbox' name='reason[]' value='sand mining' /> Sand Mining</label><br />
+									<label><input type='checkbox' name='reason[]' value='political problem' /> Political Problem </label><br />
+									<label><input type='checkbox' name='reason[]' value='absconding party' /> Absconding Party </label><br />
+								
+							</div>
+						</div><!-- Close inner Row -->
+					</div><!--Close Panel Body-->
+				</div><!--Close panel-->
+			</div><!--Close row-->
+			<div class='row'>
 				<div class='col-md-3'>
 					<input type='hidden' name='member_id' value='<?php echo $_SESSION['s_id']; ?>' />
 					<input type='hidden' name='id' value='<?php echo $nameListRowData['id']; ?>'>
@@ -223,7 +244,7 @@ if(isset($_GET['id'])){
 				</div>
 			</div>
 			<center>
-				<button type='submit' class='btn btn-success btn-lg'>Submit</button>
+				<button type='submit' id='submit_namelist' class='btn btn-success btn-lg'>Submit</button>
 			</center>
 		</form>
 	</div>
@@ -290,6 +311,19 @@ if(isset($_GET['id'])){
 </div>
 	<script src='js/script.js' type='text/javascript'></script>
 	<script type="text/javascript">
+		$('#namelist_form').submit(function(event){
+			var checkedAtLeastOne = false;
+			$('input[type="checkbox"]').each(function() {
+			    if ($(this).is(":checked")) {
+			        checkedAtLeastOne = true;
+			    }
+			});
+			if(!checkedAtLeastOne){
+				alert("Please select any one Reason !!!");
+				event.preventDefault();
+			}
+		});
+
 		$('#post_submit_btn').click(function(event){
 			var post = $('#post_name').val();
 			var	dist = $('#district').val();

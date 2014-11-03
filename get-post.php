@@ -16,9 +16,9 @@ if(isset($_POST)){
 
 	foreach ($values as $key => $value) {
 		if($value['id'] == $_POST['post'])
-			$post_str .= "<option value='".$value['id']."' selected>".$value['post']." : ".$value['district']."</option>";
+			$post_str .= "<option value='".$value['id']."' selected>".$value['post']." : ".$value['district']." : ".$value['pincode']."</option>";
 		else
-			$post_str .= "<option value='".$value['id']."'>".$value['post']." : ".$value['district']."</option>";
+			$post_str .= "<option value='".$value['id']."'>".$value['post']." : ".$value['district']." : ".$value['pincode']."</option>";
 	}
 	echo $post_str;
 }
