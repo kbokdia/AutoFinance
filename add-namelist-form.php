@@ -36,7 +36,8 @@ if(isset($_GET['id'])){
 			'mobile'=>null,
 			'post_id'=>0,
 			'photo'=>null,
-			'vehicle_id'=>null
+			'vehicle_id'=>null,
+			'reason'=>null
 			);
 }
 ?>
@@ -64,14 +65,30 @@ if(isset($_GET['id'])){
 		}
 
 		
-		function createPost(){
-			//event.preventDefault();
-			
+		function createReasons(){
+			$('#reasons').empty();
+			var reasons = ["Court Case","Party dues defaulting","Liquor","Sand mining","Political problem","Absconding party"];
+			var selectedReasons = <?php echo "'".$nameListRowData['reason']."'"; ?>;
+			selectedReasons = selectedReasons.split(',');
+			console.log(selectedReasons);
+			var data = "";
+
+			for (var i = 0; i < reasons.length; i++) {
+				temp = "";
+				for (var j = 0; j < selectedReasons.length; j++) {
+					if (reasons[i].toUpperCase() == selectedReasons[j].toUpperCase()) {
+						temp = "checked";
+						break;
+					}
+				}
+				data += "<label><input type='checkbox' name='reason[]' value='"+reasons[i]+"' "+temp+" /> "+reasons[i]+"</label><br />";
+			}
+			$('#reasons').append(data);
 		}
 
 		$(document).ready(function(event){
 			getPostData();
-
+			createReasons();
 			var str = "";
 			districts.sort();
 			for(i=0; i<districts.length;i++){
@@ -220,14 +237,7 @@ if(isset($_GET['id'])){
 					</div>
 					<div class='panel-body'>
 						<div class='row'>
-							<div class='checkbox' style='padding-left:10px'>
-								
-									<label><input type='checkbox' name='reason[]' value='Court Case' /> Court Case</label><br />
-									<label><input type='checkbox' name='reason[]' value='Party dues defaulting' /> Party Dues defaulting</label><br />
-									<label><input type='checkbox' name='reason[]' value='Liquor' /> Liquor </label><br />
-									<label><input type='checkbox' name='reason[]' value='Sand mining' /> Sand Mining</label><br />
-									<label><input type='checkbox' name='reason[]' value='Political problem' /> Political Problem </label><br />
-									<label><input type='checkbox' name='reason[]' value='Absconding party' /> Absconding Party </label><br />
+							<div class='checkbox' id='reasons' style='padding-left:10px'>
 								
 							</div>
 						</div><!-- Close inner Row -->

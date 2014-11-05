@@ -14,9 +14,9 @@ if(isset($_POST)){
 	if(isset($_POST['reason'])){
 		$temp = $_POST['reason'];
 		foreach ($temp as $key => $value) {
-			$reason .= $value.", ";
+			$reason .= $value.",";
 		}
-		$reason = rtrim($reason,", ");
+		$reason = rtrim($reason,",");
 	}
 
 	$name_list_data = array("house"=>$_POST['house'],"address1"=>$_POST['address1'],"address2"=>$_POST['address2'],"mobile"=>$_POST['mobile'],"phone"=>$_POST['phone'],"post_id"=>$_POST['post'],"member_id"=>$_POST['member_id'],"reason"=>$reason);

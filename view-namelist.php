@@ -22,6 +22,11 @@ if(isset($_POST['id'])){
 	$nameListRowData['district'] = $post_arr[0]['district'];
 	$nameListRowData['pincode'] = $post_arr[0]['pincode'];
 	$nameListRowData['state'] = $post_arr[0]['state'];
+	$tempReasonArr = explode(",",$nameListRowData['reason']);
+	for ($i=0; $i < count($tempReasonArr) ; $i++) { 
+		$tempReasonArr[$i] = " ".ucfirst($tempReasonArr[$i]);
+	}
+	$nameListRowData['reason'] = implode(",", $tempReasonArr);
 
 
 	$view_str = "<table id='view_namelist_table' class='table'>
