@@ -175,7 +175,7 @@ if(isset($_GET['id'])){
 							<div class='col-md-5'>
 								<div class='form-group'>
 								<label for='house'>House Name</label>
-								<input id='house' name='house' class='form-control all-upper-case' value='<?php echo $nameListRowData['house']; ?>' required='required' placeholder='Enter House Name'/>
+								<input id='house' name='house' class='form-control upper-case' value='<?php echo $nameListRowData['house']; ?>' required='required' placeholder='Enter House Name'/>
 							</div>
 						</div>
 						
