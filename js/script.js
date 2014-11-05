@@ -10,6 +10,12 @@ $(".upper-case").focusout(function(event){
 	$(this).val(str);
 });
 
+$(".all-upper-case").focusout(function(event){
+	var str = $(this).val()
+	str = str.toUpperCase();
+	$(this).val(str);
+});
+
 $('.alert').click(function(event){
 	$('.alert').slideUp('slow');
 });

@@ -113,7 +113,7 @@ if(isset($_GET['id'])){
 							<div class='col-md-5'>
 								<div class='form-group'>
 									<label for='last_name'>Initials</label>
-									<input id='last_name' name='last_name' class='form-control upper-case' value='<?php echo $nameListRowData['last_name']; ?>' placeholder='Enter initials as "S.V"'/>
+									<input id='last_name' name='last_name' class='form-control all-upper-case' value='<?php echo $nameListRowData['last_name']; ?>' placeholder='Enter initials as "S.V"'/>
 								</div>
 							</div>
 						</div><!-- Close inner Row -->
@@ -141,7 +141,7 @@ if(isset($_GET['id'])){
 							<div class='col-md-5'>
 								<div class='form-group'>
 									<label for='father_last_name'>Initials</label>
-									<input id='father_last_name' name='father_last_name' class='form-control upper-case' value='<?php echo $nameListRowData['f_last_name']; ?>' placeholder='Enter initials as "V.K"'/>
+									<input id='father_last_name' name='father_last_name' class='form-control all-upper-case' value='<?php echo $nameListRowData['f_last_name']; ?>' placeholder='Enter initials as "V.K"'/>
 								</div>
 							</div>
 						</div><!-- Close inner Row -->
@@ -158,7 +158,7 @@ if(isset($_GET['id'])){
 							<div class='col-md-5'>
 								<div class='form-group'>
 								<label for='house'>House Name</label>
-								<input id='house' name='house' class='form-control upper-case' value='<?php echo $nameListRowData['house']; ?>' required='required' placeholder='Enter House Name'/>
+								<input id='house' name='house' class='form-control all-upper-case' value='<?php echo $nameListRowData['house']; ?>' required='required' placeholder='Enter House Name'/>
 							</div>
 						</div>
 						
@@ -185,7 +185,7 @@ if(isset($_GET['id'])){
 						<div class='col-md-5'>
 							<div class='form-group'>
 								<label for='mobile'>Mobile</label>
-								<input id='mobile' name='mobile' class='form-control' value='<?php echo $nameListRowData['mobile']; ?>' required='required' placeholder='Enter mobile as "9876543210"'/>
+								<input id='mobile' name='mobile' class='form-control' value='<?php echo $nameListRowData['mobile']; ?>' placeholder='Enter mobile as "9876543210"'/>
 							</div>
 						</div>
 
@@ -222,12 +222,12 @@ if(isset($_GET['id'])){
 						<div class='row'>
 							<div class='checkbox' style='padding-left:10px'>
 								
-									<label><input type='checkbox' name='reason[]' value='court case' /> Court Case</label><br />
-									<label><input type='checkbox' name='reason[]' value='party dues defaulting' /> Party Dues defaulting</label><br />
-									<label><input type='checkbox' name='reason[]' value='liquor' /> Liquor </label><br />
-									<label><input type='checkbox' name='reason[]' value='sand mining' /> Sand Mining</label><br />
-									<label><input type='checkbox' name='reason[]' value='political problem' /> Political Problem </label><br />
-									<label><input type='checkbox' name='reason[]' value='absconding party' /> Absconding Party </label><br />
+									<label><input type='checkbox' name='reason[]' value='Court Case' /> Court Case</label><br />
+									<label><input type='checkbox' name='reason[]' value='Party dues defaulting' /> Party Dues defaulting</label><br />
+									<label><input type='checkbox' name='reason[]' value='Liquor' /> Liquor </label><br />
+									<label><input type='checkbox' name='reason[]' value='Sand mining' /> Sand Mining</label><br />
+									<label><input type='checkbox' name='reason[]' value='Political problem' /> Political Problem </label><br />
+									<label><input type='checkbox' name='reason[]' value='Absconding party' /> Absconding Party </label><br />
 								
 							</div>
 						</div><!-- Close inner Row -->
