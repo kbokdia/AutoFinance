@@ -118,8 +118,8 @@ if(isset($_GET['id'])){
 						<div class='row'>
 							<div class='col-md-5'>
 								<div class='form-group'>
-									<label for='first_name'>Full Name</label>
-									<input id='first_name' name='first_name' class='form-control upper-case' value='<?php echo $nameListRowData['first_name']; ?>' required='required' placeholder='Enter name as "Joseph Sunny"' />
+									<label class='control-label' for='first_name'>Full Name</label>
+									<input id='first_name' name='first_name' onfocusout="checkName();" class='form-control upper-case' value='<?php echo $nameListRowData['first_name']; ?>' required='required' placeholder='Enter name as "Joseph Sunny"' />
 								</div>
 							</div>
 							
@@ -223,7 +223,7 @@ if(isset($_GET['id'])){
 								<label for='post'>Post</label>
 								<select id='post' name='post' class='form-control'>
 								</select>
-								<a href='#NewPost' class='btn btn-danger label-top' data-toggle='modal' data-target='.bs-modal-sm' id='post_btn'>New Post</a>
+								<!--<a href='#NewPost' class='btn btn-danger label-top' data-toggle='modal' data-target='.bs-modal-sm' id='post_btn'>New Post</a>-->
 							</div>
 						</div>
 					</div><!--Close row-->
@@ -321,6 +321,21 @@ if(isset($_GET['id'])){
 </div>
 	<script src='js/script.js' type='text/javascript'></script>
 	<script type="text/javascript">
+		var flag =[];
+
+		function checkName(){
+			var name = $("#first_name").val();
+			if(name.length < 3){
+				$("#first_name").parent('div').addClass('has-error');
+				flag[0] = false;
+			}
+			else{
+				$("#first_name").parent('div').addClass('has-success');
+				flag[0] = true;
+			}
+		}
+
+
 		$('#namelist_form').submit(function(event){
 			var checkedAtLeastOne = false;
 			$('input[type="checkbox"]').each(function() {
@@ -332,6 +347,28 @@ if(isset($_GET['id'])){
 				alert("Please select any one Reason !!!");
 				event.preventDefault();
 			}
+
+			var post = $("#post").val();
+			if(post == 0){
+				flag[1] = false;
+			}
+			else{
+				flag[1] = true;	
+			}
+
+			var canSubmit = true;
+
+    		for(f in flag){
+    			if (!flag[f]) {
+    				canSubmit = false;
+    				break;
+    			};
+    		}
+
+    		if (!canSubmit) {
+    			alert("Please enter correct details!!");
+    			event.preventDefault();
+    		}
 		});
 
 		$('#post_submit_btn').click(function(event){

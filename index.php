@@ -132,7 +132,7 @@ else{
               </div>
 
                 <button type='submit' id='login_btn' class='btnnew'>login</button>
-            </form>
+            </form><br />
             ".$alert_msg."
           </div><!--Login form-->
         </div><!--Login Screen-->

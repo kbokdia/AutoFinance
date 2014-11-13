@@ -12,7 +12,7 @@ if(isset($_POST)){
 	$post = new Table('posts');
 	$values = $post->getAll("post");
 	$post->close();
-	$post_str = "<option>Select Post</option>";
+	$post_str = "<option selected='true' value='0'>Select Post</option>";
 
 	foreach ($values as $key => $value) {
 		if($value['id'] == $_POST['post'])
